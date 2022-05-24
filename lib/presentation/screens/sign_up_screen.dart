@@ -1,21 +1,19 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lawma_app/data/constant/color_const.dart';
 import 'package:lawma_app/data/constant/image_const.dart';
 import 'package:lawma_app/data/utils/theme_const.dart';
-import 'package:lawma_app/presentation/routes/route_generator.dart';
 import 'package:lawma_app/presentation/widgets/custom_button.dart';
 import 'package:lawma_app/presentation/widgets/text_field.dart';
 
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({ Key? key }) : super(key: key);
+
+
+class SignUpScreen extends StatelessWidget {
+  const SignUpScreen({ Key? key }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    //Size size = MediaQuery.of(context).size;
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: const SystemUiOverlayStyle(
         // For Android.
@@ -34,45 +32,44 @@ class LoginScreen extends StatelessWidget {
           child: SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
             child: Column(
-              mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
-                  height: 100.0.h,
-                ),
-               
-                
-                Align(
-                  alignment: Alignment.center,
-                  child: Image.asset(ImageConst.loginImage, ),),
-
-                SizedBox(
-                  height: 48.0.h,
+                  height: 20.0.h,
                 ),
                 Padding(
-                  padding:  EdgeInsets.symmetric(horizontal: 27.0.w),
+                  padding: EdgeInsets.symmetric(horizontal: 20.0.w),
+                  child: IconButton(
+                    icon: const Icon(Icons.arrow_back_ios, color: ColorConst.dark,),
+                    onPressed: () => Navigator.pop(context),
+                  ),
+                
+                ),
+                SizedBox(
+                  height: 34.0.h,
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 27.0.w),
                   child: Text(
-                    'Sign in',
+                    'Sign up free',
                     style: CustomTheme.largeText(context).copyWith(
                       color: ColorConst.dark,
                       fontWeight: FontWeight.w600,
                       fontSize: 28.0.sp,
-                    
                     ),
                   ),
                 ),
                 SizedBox(
-                  height: 18.0.h,
+                  height: 50.0.h,
                 ),
                 Padding(
-                  padding:  EdgeInsets.symmetric(horizontal: 27.0.w),
+                  padding: EdgeInsets.symmetric(horizontal: 27.0.w),
                   child: const CustomTextField(
                     //controller: null,
-                    hintText: "Enter e-mail address", 
-                    keyboardType: TextInputType.emailAddress, 
+                    hintText: "Enter Full Name",
+                    keyboardType: TextInputType.name,
                     prefixIcon: ImageConst.emailIcon,
-                    
                   ),
                 ),
                 SizedBox(
@@ -82,55 +79,47 @@ class LoginScreen extends StatelessWidget {
                   padding: EdgeInsets.symmetric(horizontal: 27.0.w),
                   child: const CustomTextField(
                     //controller: null,
-                    hintText: "password",
+                    hintText: "Enter e-mail address",
+                    keyboardType: TextInputType.emailAddress,
+                    prefixIcon: ImageConst.emailIcon,
+                  ),
+                ),
+                SizedBox(
+                  height: 18.0.h,
+                ),
+                
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 27.0.w),
+                  child: const CustomTextField(
+                    //controller: null,
+                    hintText: "Create password",
                     keyboardType: TextInputType.visiblePassword,
                     prefixIcon: ImageConst.passwordIcon,
                   ),
                 ),
                 SizedBox(
-                  height: 120.0.h,
-                
+                  height: 18.0.h,
                 ),
-                //Spacer(),
                 Padding(
-                  padding:  EdgeInsets.symmetric(horizontal: 27.0.w),
-                  child: CustomButton(
-                    text: "Continue",
-                    onTap: (){},
+                  padding: EdgeInsets.symmetric(horizontal: 27.0.w),
+                  child: const CustomTextField(
+                    //controller: null,
+                    hintText: "Repeat Password",
+                    keyboardType: TextInputType.visiblePassword,
+                    prefixIcon: ImageConst.passwordIcon,
                   ),
                 ),
                 SizedBox(
-                  height: 5.0.h,
+                  height: 250.0.h,
                 ),
-                Align(
-                  alignment: Alignment.center,
-                  child: TextButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, RouteGenerator.signUpScreen);
-                    
-                    },
-                    child: RichText(
-                      textAlign: TextAlign.center,
-                      text: TextSpan(
-                        text: "Don't have an account? ",
-                        style: CustomTheme.smallText(context).copyWith(
-                         
-                        ),
-                        children: [
-                          TextSpan(
-                            text: "Sign up",
-                            style: CustomTheme.smallText(context).copyWith(
-                              color: ColorConst.primaryColor,
-                              //fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        
-                        ]
-                      ),
-                    
-                    ),
+                //Spacer(),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 27.0.w),
+                  child: CustomButton(
+                    text: "Continue",
+                    onTap: () {},
                   ),
-                )
+                ),
               ],
             ),
           ),

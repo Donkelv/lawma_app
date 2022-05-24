@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lawma_app/presentation/screens/login_screen.dart';
 import 'package:lawma_app/presentation/screens/onboarding_screen.dart';
+import 'package:lawma_app/presentation/screens/sign_up_screen.dart';
 
 class RouteGenerator {
 
@@ -9,6 +10,7 @@ class RouteGenerator {
 
   static const String onBoardingScreen = '/onBoardingScreen';
   static const String loginScreen = '/loginScreen';
+  static const String signUpScreen = '/signUpScreen';
 
 
 
@@ -22,6 +24,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const OnboardingScreen());
       case loginScreen:
         return MaterialPageRoute(builder: (_) => const LoginScreen());
+      case signUpScreen:
+        return MaterialPageRoute(builder: (_) => const SignUpScreen());
         
       default:
       return MaterialPageRoute(
