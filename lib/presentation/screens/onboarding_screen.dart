@@ -6,6 +6,8 @@ import 'package:lawma_app/data/constant/color_const.dart';
 import 'package:lawma_app/data/constant/image_const.dart';
 import 'package:lawma_app/data/constant/onboarding_const.dart';
 import 'package:lawma_app/data/utils/theme_const.dart';
+import 'package:lawma_app/presentation/routes/route_generator.dart';
+import 'package:lawma_app/presentation/widgets/onboarding_widgets/next_button.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({Key? key}) : super(key: key);
@@ -50,7 +52,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(
-                height: 290.0.h,
+                height: 222.0.h,
                 width: size.width,
                 child: PageView.builder(
                   controller: _pageController,
@@ -80,7 +82,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
                 ),
               ),
               SizedBox(
-                height: 25.0.h,
+                height: 45.0.h,
               ),
               Text(
                 "Get Your Waste Out",
@@ -108,7 +110,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
                         curve: Curves.easeIn);
                   } else {
                     debugPrint("Onboarding completed");
-                    //Navigator.pushNamed(context, '/home');
+                    Navigator.pushNamed(context, RouteGenerator.loginScreen);
                   }
                 
                 },
@@ -121,37 +123,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
   }
 }
 
-class NextButton extends StatelessWidget {
-  final VoidCallback? onTap;
-  const NextButton({
-    this.onTap,
-    Key? key,
-  }) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 76.0.h,
-      width: 76.0.w,
-      decoration: const BoxDecoration(
-        shape: BoxShape.circle,
-        color: ColorConst.primaryColor,
-      ),
-      child: Material(
-        type: MaterialType.transparency,
-        child: InkWell(
-          borderRadius: BorderRadius.circular(38.0.h),
-          onTap: onTap,
-          child: Center(
-              child: SvgPicture.asset(
-            ImageConst.arrowNextIcon,
-            fit: BoxFit.scaleDown,
-          )),
-        ),
-      ),
-    );
-  }
-}
 
 Widget _buildPageIndicator(bool value, int i) {
   return AnimatedContainer(
