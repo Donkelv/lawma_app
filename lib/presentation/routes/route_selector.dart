@@ -5,6 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:lawma_app/data/constant/color_const.dart';
 import 'package:lawma_app/data/constant/string_const.dart';
+import 'package:lawma_app/data/utils/theme_const.dart';
+import 'package:lawma_app/presentation/routes/route_generator.dart';
 
 class RouteSelector extends StatelessWidget {
   const RouteSelector({Key? key}) : super(key: key);
@@ -22,10 +24,13 @@ class RouteSelector extends StatelessWidget {
         child: ScreenUtilInit(
             designSize: const Size(375, 854),
             builder: () {
-              return const MaterialApp(
+              return  MaterialApp(
+                theme: CustomTheme.getTheme(),
                 debugShowCheckedModeBanner: false,
                 title: StringConst.appName,
-                color: ColorConst.whiteColor
+                color: ColorConst.whiteColor,
+                onGenerateRoute: RouteGenerator.generateRoute,
+                initialRoute: RouteGenerator.onBoardingScreen,
               );
             },),);
   }
