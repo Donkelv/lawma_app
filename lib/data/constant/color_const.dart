@@ -7,6 +7,7 @@ class ColorConst {
   static const Color lightGreyColor3 = Color(0xFFADADAD);
   static const Color blackColor = Colors.black;
   static const Color primaryColor = Color(0xff0373F3);
+  static const Color primaryColor2 = Color(0xff0077FF);
   static const Color greyColor = Color(0xFFB4B4B4);
   static const Color dark = Color(0xFF1F1F1F);
 }

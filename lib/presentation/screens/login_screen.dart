@@ -96,7 +96,9 @@ class LoginScreen extends StatelessWidget {
                   padding:  EdgeInsets.symmetric(horizontal: 27.0.w),
                   child: CustomButton(
                     text: "Continue",
-                    onTap: (){},
+                    onTap: (){
+                      Navigator.pushNamed(context, RouteGenerator.bottomAppBarScreen);
+                    },
                   ),
                 ),
                 SizedBox(

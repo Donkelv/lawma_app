@@ -13,4 +13,7 @@ class ImageConst {
   static const String arrowNextIcon = svgAssetRoute + 'arrow_next_icon.svg';
   static const String emailIcon = svgAssetRoute + 'email_icon.svg';
   static const String passwordIcon = svgAssetRoute + 'password_icon.svg';
+  static const String homeIcon = svgAssetRoute + 'home_icon.svg';
+  static const String historyIcon = svgAssetRoute + 'history_icon.svg';
+  static const String profileIcon = svgAssetRoute + 'profile_icon.svg';
 }
