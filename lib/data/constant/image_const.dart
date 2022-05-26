@@ -16,6 +16,10 @@ class ImageConst {
   static const String homeIcon = svgAssetRoute + 'home_icon.svg';
   static const String historyIcon = svgAssetRoute + 'history_icon.svg';
   static const String profileIcon = svgAssetRoute + 'profile_icon.svg';
-  static const String searchIcon  = svgAssetRoute + 'search_icon.svg';
-  static const String starIcon  = svgAssetRoute + 'star_icon.svg';
+  static const String searchIcon = svgAssetRoute + 'search_icon.svg';
+  static const String starIcon = svgAssetRoute + 'star_icon.svg';
+  static const String cardManagementIcon =
+      svgAssetRoute + "card_management_icon.svg";
+  static const String logOutIcon = svgAssetRoute + "logout_icon.svg";
+  static const String userIcon = svgAssetRoute + "user_icon.svg";
 }
