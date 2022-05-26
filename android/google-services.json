@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "576847968556",
+    "project_id": "lawma-project",
+    "storage_bucket": "lawma-project.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:576847968556:android:66dba750d0135b4e16d489",
+        "android_client_info": {
+          "package_name": "com.lawma_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "576847968556-kp673em8k0jj2jkg3g23degriukp4plc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA8iZ3IRT-OCLZCZDPOtu0DF8NALRuZgcM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "576847968556-kp673em8k0jj2jkg3g23degriukp4plc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
