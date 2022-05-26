@@ -6,7 +6,7 @@ import 'package:lawma_app/presentation/screens/onboarding_screen.dart';
 import 'package:lawma_app/presentation/screens/sign_up_screen.dart';
 
 class RouteGenerator {
-  static const String onBoardingScreen = '/onBoardingScreen';
+  static const String onBoardingScreen = '/';
   static const String loginScreen = '/loginScreen';
   static const String signUpScreen = '/signUpScreen';
   static const String bottomAppBarScreen = '/bottomAppBarScreen';
@@ -26,13 +26,7 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const EditProfileScreen());
 
       default:
-        return MaterialPageRoute(
-          builder: (_) => Scaffold(
-            body: Center(
-              child: Text('No route defined for ${settings.name}'),
-            ),
-          ),
-        );
+        return MaterialPageRoute(builder: (_) => const OnboardingScreen());
     }
   }
 }
