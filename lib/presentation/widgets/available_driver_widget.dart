@@ -23,8 +23,8 @@ class AvailableDriversWidget extends StatelessWidget {
           boxShadow: const [
             BoxShadow(
               color: Color.fromRGBO(0, 0, 0, 0.1),
-              offset: Offset(0.0, 4.0),
-              blurRadius: 27.0,
+              offset: Offset(0.0, 2.0),
+              blurRadius: 15.0,
             ),
           ],
         ),

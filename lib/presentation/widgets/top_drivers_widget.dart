@@ -13,9 +13,9 @@ class TopDriversWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 15.0.w),
+      padding: EdgeInsets.symmetric(horizontal: 15.0.w, vertical: 20.0.h),
       child: Container(
-        //margin: EdgeInsets.symmetric(horizontal: 10.0.w),
+        //margin: EdgeInsets.symmetric(vertical: 5.0.h),
         width: 229.0.w,
         height: 164.0.h,
         decoration: BoxDecoration(
@@ -24,8 +24,8 @@ class TopDriversWidget extends StatelessWidget {
             boxShadow: const [
               BoxShadow(
                 color: Color.fromRGBO(0, 0, 0, 0.1),
-                offset: Offset(0.0, 4.0),
-                blurRadius: 27.0,
+                offset: Offset(0.0, 2.0),
+                blurRadius: 15.0,
               ),
             ],),
         child: Column(

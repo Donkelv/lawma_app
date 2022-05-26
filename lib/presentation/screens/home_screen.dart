@@ -93,9 +93,9 @@ class HomeScreen extends StatelessWidget {
               child: Padding(
                 padding: EdgeInsets.only(left: 12.0.w),
                 child: ListView.builder(
-                    padding: EdgeInsets.symmetric(
-                      vertical: 20.0.h,
-                    ),
+                    // padding: EdgeInsets.symmetric(
+                    //   vertical: 20.0.h,
+                    // ),
                     //shrinkWrap: true,
                     physics: const BouncingScrollPhysics(),
                     scrollDirection: Axis.horizontal,
