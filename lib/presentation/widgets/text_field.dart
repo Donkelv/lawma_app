@@ -35,7 +35,7 @@ class CustomTextField extends StatelessWidget {
             color: ColorConst.lightGreyColor3,
             fontWeight: FontWeight.w400,
           ),
-          prefixIcon: SvgPicture.asset(prefixIcon, fit: BoxFit.scaleDown,)
+          prefixIcon: SvgPicture.asset(prefixIcon, fit: BoxFit.scaleDown, color: ColorConst.lightGreyColor3,)
         ),
       ),
     );

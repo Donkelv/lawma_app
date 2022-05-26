@@ -69,7 +69,7 @@ class SignUpScreen extends StatelessWidget {
                     //controller: null,
                     hintText: "Enter Full Name",
                     keyboardType: TextInputType.name,
-                    prefixIcon: ImageConst.emailIcon,
+                    prefixIcon: ImageConst.userIcon,
                   ),
                 ),
                 SizedBox(

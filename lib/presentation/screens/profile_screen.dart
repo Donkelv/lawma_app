@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:lawma_app/data/constant/color_const.dart';
 import 'package:lawma_app/data/constant/image_const.dart';
 import 'package:lawma_app/data/utils/theme_const.dart';
+import 'package:lawma_app/presentation/routes/route_generator.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -79,7 +80,10 @@ class ProfileScreen extends StatelessWidget {
               type: MaterialType.transparency,
               child: InkWell(
                 borderRadius: BorderRadius.circular(100),
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(
+                      context, RouteGenerator.editProfileScreen);
+                },
                 child: Padding(
                   padding:
                       EdgeInsets.symmetric(horizontal: 30.0.w, vertical: 6.0.h),
@@ -99,7 +103,7 @@ class ProfileScreen extends StatelessWidget {
           Container(
             margin: EdgeInsets.symmetric(horizontal: 35.0.w),
             width: size.width,
-            decoration:  BoxDecoration(
+            decoration: BoxDecoration(
               color: ColorConst.whiteColor,
               borderRadius: BorderRadius.circular(20.0),
               boxShadow: const [
@@ -111,7 +115,8 @@ class ProfileScreen extends StatelessWidget {
               ],
             ),
             child: Padding(
-              padding:  EdgeInsets.symmetric(horizontal: 21.0.w, vertical: 29.0.h),
+              padding:
+                  EdgeInsets.symmetric(horizontal: 21.0.w, vertical: 29.0.h),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -122,17 +127,24 @@ class ProfileScreen extends StatelessWidget {
                   ),
                   TextButton(
                     onPressed: () {
-                      
+                       Navigator.pushNamed(
+                          context, RouteGenerator.editProfileScreen);
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        SvgPicture.asset(ImageConst.userIcon, fit: BoxFit.scaleDown),
+                        SvgPicture.asset(ImageConst.userIcon,
+                            fit: BoxFit.scaleDown),
                         SizedBox(
                           width: 10.0.w,
                         ),
-                        Text("Personal Data", style: CustomTheme.normalText(context).copyWith(color: ColorConst.greyColor2,),),
+                        Text(
+                          "Personal Data",
+                          style: CustomTheme.normalText(context).copyWith(
+                            color: ColorConst.greyColor2,
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -165,7 +177,7 @@ class ProfileScreen extends StatelessWidget {
                   TextButton(
                     onPressed: () {},
                     child: Padding(
-                      padding:  EdgeInsets.only(left: 4.0.w),
+                      padding: EdgeInsets.only(left: 4.0.w),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.center,
