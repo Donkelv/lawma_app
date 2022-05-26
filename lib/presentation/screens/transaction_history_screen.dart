@@ -5,6 +5,7 @@ import 'package:lawma_app/data/constant/image_const.dart';
 import 'package:lawma_app/data/utils/theme_const.dart';
 import 'package:lawma_app/presentation/widgets/custom_bottom_sheet.dart';
 import 'package:lawma_app/presentation/widgets/text_field.dart';
+import 'package:lawma_app/presentation/widgets/transaction_detail_sheet.dart';
 import 'package:lawma_app/presentation/widgets/transaction_widget.dart';
 
 class TransactionHistoryScreen extends StatelessWidget {
@@ -61,137 +62,10 @@ class TransactionHistoryScreen extends StatelessWidget {
                 return TransactionWidget(
                   size: size,
                   onTap: () {
+                    debugPrint("touched");
                     customBottomSheet(
-                      context: context, 
-                      widget: Padding(
-                        padding:  EdgeInsets.symmetric(horizontal: 40.0.w),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            SizedBox(
-                              height: 40.0.h,
-                            ),
-                            Container(
-                              width: 80.0.w,
-                              height: 80.0.h,
-                              decoration: const BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: ColorConst.lightGreyColor,
-                              ),
-                            ),
-                            SizedBox(
-                              height: 3.0.h,
-                            ),
-                            Text("Transaction Detail", style: CustomTheme.mediumText(context).copyWith(color: ColorConst.dark1, fontWeight: FontWeight.w500,),),
-                            Text(
-                              "with Sammy John",
-                              style: CustomTheme.smallestText(context).copyWith(
-                                color: ColorConst.primaryColor,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                             SizedBox(
-                              height: 40.0.h,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children:  [
-                                Text(
-                                  "Transaction Id",
-                                  style: CustomTheme.normalText(context).copyWith(
-                                    color: ColorConst.blackColor,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                                Text(
-                                  "22335tg",
-                                  style:
-                                      CustomTheme.normalText(context).copyWith(
-                                    color: ColorConst.primaryColor,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              height: 17.0.h,
-                            ),
-                            const Divider(
-                              color: ColorConst.lightPrimaryColor,
-                              height: 2.0,
-                            ),
-                            SizedBox(
-                              height: 17.0.h,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Text(
-                                  "Location",
-                                  style:
-                                      CustomTheme.normalText(context).copyWith(
-                                    color: ColorConst.blackColor,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                                Text(
-                                  "Badagry",
-                                  textAlign: TextAlign.end,
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,
-                                  style:
-                                      CustomTheme.normalText(context).copyWith(
-                                    color: ColorConst.primaryColor,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                              ],
-                            ),
-                             SizedBox(
-                              height: 17.0.h,
-                            ),
-                            const Divider(
-                              color: ColorConst.lightPrimaryColor,
-                              height: 2.0,
-                            ),
-                            SizedBox(
-                              height: 17.0.h,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Text(
-                                  "Date",
-                                  style:
-                                      CustomTheme.normalText(context).copyWith(
-                                    color: ColorConst.blackColor,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                                Text(
-                                  "01/3/22",
-                                  textAlign: TextAlign.end,
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,
-                                  style:
-                                      CustomTheme.normalText(context).copyWith(
-                                    color: ColorConst.primaryColor,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              height: 17.0.h,
-                            ),
-                          ],
-                        ),
-                      ),
+                      context: context,
+                      widget: const TransactionDetailSheet(),
                     );
                   },
                 );
@@ -203,3 +77,4 @@ class TransactionHistoryScreen extends StatelessWidget {
     );
   }
 }
+
