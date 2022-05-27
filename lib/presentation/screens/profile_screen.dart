@@ -127,7 +127,7 @@ class ProfileScreen extends StatelessWidget {
                   ),
                   TextButton(
                     onPressed: () {
-                       Navigator.pushNamed(
+                      Navigator.pushNamed(
                           context, RouteGenerator.editProfileScreen);
                     },
                     child: Row(

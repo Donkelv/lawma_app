@@ -1,7 +1,3 @@
-
-
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lawma_app/data/constant/color_const.dart';
@@ -75,7 +71,7 @@ class TransactionDetailSheet extends StatelessWidget {
           SizedBox(
             height: 17.0.h,
           ),
-           Divider(
+          Divider(
             color: ColorConst.lightPrimaryColor,
             thickness: 2.0.h,
           ),
@@ -108,9 +104,9 @@ class TransactionDetailSheet extends StatelessWidget {
           SizedBox(
             height: 17.0.h,
           ),
-           Divider(
+          Divider(
             color: ColorConst.lightPrimaryColor,
-             thickness: 2.0.h,
+            thickness: 2.0.h,
           ),
           SizedBox(
             height: 17.0.h,

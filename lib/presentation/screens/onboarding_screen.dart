@@ -110,7 +110,6 @@ class _OnboardingScreenState extends State<OnboardingScreen>
                     debugPrint("Onboarding completed");
                     Navigator.pushNamed(context, RouteGenerator.loginScreen);
                   }
-                
                 },
               )
             ],
@@ -121,12 +120,10 @@ class _OnboardingScreenState extends State<OnboardingScreen>
   }
 }
 
-
-
 Widget _buildPageIndicator(bool value, int i) {
   return AnimatedContainer(
     duration: const Duration(milliseconds: 500),
-    margin:  EdgeInsets.symmetric(horizontal: 2.0.w),
+    margin: EdgeInsets.symmetric(horizontal: 2.0.w),
     height: value == true ? 10.0.h : 7.0.h,
     width: value == true ? 10.0.w : 7.0.w,
     decoration: const BoxDecoration(

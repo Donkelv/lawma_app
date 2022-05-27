@@ -49,9 +49,7 @@ class CustomTheme {
           fontSize: 12.0.sp,
           fontWeight: FontWeight.w300,
           color: ColorConst.blackColor,
-          fontFamily: GoogleFonts.poppins(
-            
-          ).fontFamily,
+          fontFamily: GoogleFonts.poppins().fontFamily,
         );
   }
 
@@ -68,14 +66,13 @@ class CustomTheme {
     return ThemeData(
       scaffoldBackgroundColor: Colors.white,
       backgroundColor: Colors.white,
-      primaryColor:  ColorConst.primaryColor,
+      primaryColor: ColorConst.primaryColor,
       fontFamily: GoogleFonts.poppins().fontFamily,
       //accentColor: Colors.black,
       // textTheme: _textTheme(),
       //typography: Typography(),
       //platform: TargetPlatform.,
-      pageTransitionsTheme: const PageTransitionsTheme(
-        builders: {
+      pageTransitionsTheme: const PageTransitionsTheme(builders: {
         TargetPlatform.android: ZoomPageTransitionsBuilder(),
         TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
       }),

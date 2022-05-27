@@ -15,21 +15,8 @@ class BottomAppBarModel {
 }
 
 List<BottomAppBarModel> bottomAppBarList = [
+  const BottomAppBarModel(icon: ImageConst.homeIcon, page: HomeScreen()),
   const BottomAppBarModel(
-    icon: ImageConst.homeIcon,
-    page: HomeScreen()
-  
-  ),
-  const BottomAppBarModel(
-    icon: ImageConst.historyIcon,
-    page: TransactionHistoryScreen()
-  
-  ),
-  const BottomAppBarModel(
-    icon: ImageConst.profileIcon,
-    page: ProfileScreen()
-  
-  ),
+      icon: ImageConst.historyIcon, page: TransactionHistoryScreen()),
+  const BottomAppBarModel(icon: ImageConst.profileIcon, page: ProfileScreen()),
 ];
-
-

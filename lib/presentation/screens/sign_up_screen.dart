@@ -7,10 +7,8 @@ import 'package:lawma_app/data/utils/theme_const.dart';
 import 'package:lawma_app/presentation/widgets/custom_button.dart';
 import 'package:lawma_app/presentation/widgets/text_field.dart';
 
-
-
 class SignUpScreen extends StatelessWidget {
-  const SignUpScreen({ Key? key }) : super(key: key);
+  const SignUpScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -41,10 +39,12 @@ class SignUpScreen extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 20.0.w),
                   child: IconButton(
-                    icon: const Icon(Icons.arrow_back_ios, color: ColorConst.dark,),
+                    icon: const Icon(
+                      Icons.arrow_back_ios,
+                      color: ColorConst.dark,
+                    ),
                     onPressed: () => Navigator.pop(context),
                   ),
-                
                 ),
                 SizedBox(
                   height: 34.0.h,
@@ -87,7 +87,7 @@ class SignUpScreen extends StatelessWidget {
                 SizedBox(
                   height: 18.0.h,
                 ),
-                
+
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 27.0.w),
                   child: const CustomTextField(

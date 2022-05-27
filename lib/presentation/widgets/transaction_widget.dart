@@ -4,9 +4,6 @@ import 'package:lawma_app/data/constant/color_const.dart';
 
 import 'package:lawma_app/data/utils/theme_const.dart';
 
-
-
-
 class TransactionWidget extends StatelessWidget {
   const TransactionWidget({
     Key? key,

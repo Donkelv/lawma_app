@@ -53,7 +53,7 @@ class HomeScreen extends StatelessWidget {
                 style: CustomTheme.semiLargeText(context).copyWith(
                   color: ColorConst.dark,
                   fontWeight: FontWeight.w600,
-      
+
                   // fontSize: 28.0.sp,
                 ),
               ),
@@ -149,4 +149,3 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
-

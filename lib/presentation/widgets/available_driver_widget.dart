@@ -3,8 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lawma_app/data/constant/color_const.dart';
 import 'package:lawma_app/data/utils/theme_const.dart';
 
-
-
 class AvailableDriversWidget extends StatelessWidget {
   const AvailableDriversWidget({
     Key? key,

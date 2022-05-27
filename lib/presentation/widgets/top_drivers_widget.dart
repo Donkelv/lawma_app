@@ -19,15 +19,16 @@ class TopDriversWidget extends StatelessWidget {
         width: 229.0.w,
         height: 164.0.h,
         decoration: BoxDecoration(
-            color: ColorConst.whiteColor,
-            borderRadius: BorderRadius.circular(10.0),
-            boxShadow: const [
-              BoxShadow(
-                color: Color.fromRGBO(0, 0, 0, 0.1),
-                offset: Offset(0.0, 2.0),
-                blurRadius: 15.0,
-              ),
-            ],),
+          color: ColorConst.whiteColor,
+          borderRadius: BorderRadius.circular(10.0),
+          boxShadow: const [
+            BoxShadow(
+              color: Color.fromRGBO(0, 0, 0, 0.1),
+              offset: Offset(0.0, 2.0),
+              blurRadius: 15.0,
+            ),
+          ],
+        ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [

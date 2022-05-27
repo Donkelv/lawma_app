@@ -8,8 +8,6 @@ class OnBoardingModel {
   });
 }
 
-
-
 List<OnBoardingModel> onboardingList = [
   const OnBoardingModel(
     image: ImageConst.onboarding_1,
@@ -17,5 +15,4 @@ List<OnBoardingModel> onboardingList = [
   const OnBoardingModel(
     image: ImageConst.onboarding_2,
   ),
-  
 ];

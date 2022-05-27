@@ -21,17 +21,19 @@ class RouteSelector extends StatelessWidget {
       ),
     );
     return ProviderScope(
-        child: ScreenUtilInit(
-            designSize: const Size(375, 854),
-            builder: () {
-              return  MaterialApp(
-                theme: CustomTheme.getTheme(),
-                debugShowCheckedModeBanner: false,
-                title: StringConst.appName,
-                color: ColorConst.whiteColor,
-                onGenerateRoute: RouteGenerator.generateRoute,
-                initialRoute: RouteGenerator.onBoardingScreen,
-              );
-            },),);
+      child: ScreenUtilInit(
+        designSize: const Size(375, 854),
+        builder: () {
+          return MaterialApp(
+            theme: CustomTheme.getTheme(),
+            debugShowCheckedModeBanner: false,
+            title: StringConst.appName,
+            color: ColorConst.whiteColor,
+            onGenerateRoute: RouteGenerator.generateRoute,
+            initialRoute: RouteGenerator.onBoardingScreen,
+          );
+        },
+      ),
+    );
   }
 }

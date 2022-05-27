@@ -3,12 +3,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lawma_app/data/constant/color_const.dart';
 import 'package:lawma_app/data/utils/theme_const.dart';
 
-
-
 class CustomButton extends StatelessWidget {
   final String text;
   final VoidCallback onTap;
-  const CustomButton({ required this.text, required this.onTap, Key? key }) : super(key: key);
+  const CustomButton({required this.text, required this.onTap, Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,16 +15,15 @@ class CustomButton extends StatelessWidget {
     return Container(
       width: size.width,
       decoration: BoxDecoration(
-        color: ColorConst.primaryColor,
-        borderRadius: BorderRadius.circular(36)
-      ),
+          color: ColorConst.primaryColor,
+          borderRadius: BorderRadius.circular(36)),
       child: Material(
         type: MaterialType.transparency,
         child: InkWell(
           borderRadius: BorderRadius.circular(36),
           onTap: onTap,
           child: Padding(
-            padding:  EdgeInsets.all(15.0.sp),
+            padding: EdgeInsets.all(15.0.sp),
             child: Center(
               child: Text(
                 text,

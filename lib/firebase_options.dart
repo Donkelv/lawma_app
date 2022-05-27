@@ -69,7 +69,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '576847968556',
     projectId: 'lawma-project',
     storageBucket: 'lawma-project.appspot.com',
-    iosClientId: '576847968556-0eosd881lv8aivsc5uf23gbgm3kspre2.apps.googleusercontent.com',
+    iosClientId:
+        '576847968556-0eosd881lv8aivsc5uf23gbgm3kspre2.apps.googleusercontent.com',
     iosBundleId: 'com.example.lawmaApp',
   );
 }

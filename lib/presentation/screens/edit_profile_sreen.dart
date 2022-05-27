@@ -7,10 +7,8 @@ import 'package:lawma_app/data/utils/theme_const.dart';
 import 'package:lawma_app/presentation/widgets/custom_button.dart';
 import 'package:lawma_app/presentation/widgets/text_field.dart';
 
-
-
 class EditProfileScreen extends StatelessWidget {
-  const EditProfileScreen({ Key? key }) : super(key: key);
+  const EditProfileScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +31,7 @@ class EditProfileScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-               SizedBox(
+              SizedBox(
                 height: 20.0.h,
               ),
               Padding(
@@ -49,44 +47,44 @@ class EditProfileScreen extends StatelessWidget {
               SizedBox(
                 height: 34.0.h,
               ),
-               Align(
-                 alignment: Alignment.center,
-                 child: Text(
+              Align(
+                alignment: Alignment.center,
+                child: Text(
                   "Edit Profile",
                   style: CustomTheme.semiLargeText(context).copyWith(
                     color: ColorConst.dark,
                     fontWeight: FontWeight.w600,
-                     
+
                     // fontSize: 28.0.sp,
-                  ),
-                             ),
-               ),
-               SizedBox(
-                 height: 70.0.h,
-               ),
-              Align(
-                alignment: Alignment.center,
-                child: Container(
-                width: 90.0.w,
-                height: 90.0.h,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  border: Border.all(
-                    color: ColorConst.lightPrimaryColor,
-                    width: 3.0,
-                  ),
-                ),
-                child: Center(
-                  child: Container(
-                    width: 80.0.w,
-                    height: 80.0.h,
-                    decoration: const BoxDecoration(
-                      color: ColorConst.lightGreyColor,
-                      shape: BoxShape.circle,
-                    ),
                   ),
                 ),
               ),
+              SizedBox(
+                height: 70.0.h,
+              ),
+              Align(
+                alignment: Alignment.center,
+                child: Container(
+                  width: 90.0.w,
+                  height: 90.0.h,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      color: ColorConst.lightPrimaryColor,
+                      width: 3.0,
+                    ),
+                  ),
+                  child: Center(
+                    child: Container(
+                      width: 80.0.w,
+                      height: 80.0.h,
+                      decoration: const BoxDecoration(
+                        color: ColorConst.lightGreyColor,
+                        shape: BoxShape.circle,
+                      ),
+                    ),
+                  ),
+                ),
               ),
               SizedBox(
                 height: 30.0.h,
@@ -112,7 +110,6 @@ class EditProfileScreen extends StatelessWidget {
               ),
             ],
           ),
-          
         ),
       ),
     );
