@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+
 
 
 part 'auth_loading_state.freezed.dart';
@@ -13,6 +13,7 @@ extension AuthLoadingStateExtension on AuthLoadingState {
 }
 
 
+@freezed
 class AuthLoadingState with _$AuthLoadingState {
  const factory AuthLoadingState.initial() = _$AuthLoadingStateInitial;
  const factory AuthLoadingState.loading() = _$AuthLoadingStateLoading;

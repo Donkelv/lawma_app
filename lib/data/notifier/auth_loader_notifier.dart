@@ -2,6 +2,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lawma_app/domain/repository/auth_repository.dart';
 import 'package:lawma_app/domain/states/auth_loading_state.dart';
 
+
+
+////SIGN IN LOADER NOTIFIER
 class SignInLoaderNotifier extends StateNotifier<AuthLoadingState> {
   SignInLoaderNotifier(
     this.ref, {
@@ -26,6 +29,40 @@ class SignInLoaderNotifier extends StateNotifier<AuthLoadingState> {
       state = AuthLoadingState.error(e.toString());
     }
   }
+}
+
+
+
+////SIGN UP LOADER NOTIFIER
+class SignUpNotifier extends StateNotifier<AuthLoadingState> {
+  SignUpNotifier(
+    this.ref,{
+      required BaseAuthRepository signUpRepository,
+    }
+  ): _signUpRepository = signUpRepository,
+  super(
+    const AuthLoadingState.initial(),
+  
+  );
+
+  final Ref ref;
+  final BaseAuthRepository _signUpRepository;
+
+
+  Future signUp({String? email, String? password}) async {
+    state = const AuthLoadingState.loading();
+    try {
+      final data =
+          await _signUpRepository.createUserWithEmailAndPassword(email!, password!);
+      data.fold(
+        (l) => state = AuthLoadingState.error(l.toString()),
+        (r) => state =  AuthLoadingState.authenticated(r),
+      );
+    } catch (e) {
+      state = AuthLoadingState.error(e.toString());
+    }
+  }
+  
 }
 
 
