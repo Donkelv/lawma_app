@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:lawma_app/data/constant/color_const.dart';
 import 'package:lawma_app/data/constant/string_const.dart';
+import 'package:lawma_app/data/providers/auth_state_provider.dart';
 import 'package:lawma_app/data/utils/theme_const.dart';
 import 'package:lawma_app/presentation/routes/route_generator.dart';
 
@@ -21,18 +22,23 @@ class RouteSelector extends StatelessWidget {
       ),
     );
     return ProviderScope(
-      child: ScreenUtilInit(
-        designSize: const Size(375, 854),
-        builder: () {
-          return MaterialApp(
-            theme: CustomTheme.getTheme(),
-            debugShowCheckedModeBanner: false,
-            title: StringConst.appName,
-            color: ColorConst.whiteColor,
-            onGenerateRoute: RouteGenerator.generateRoute,
-            initialRoute: RouteGenerator.onBoardingScreen,
+      child: Consumer(
+        builder: (context, ref, child) {
+           
+          return ScreenUtilInit(
+            designSize: const Size(375, 854),
+            builder: () {
+              return MaterialApp(
+                theme: CustomTheme.getTheme(),
+                debugShowCheckedModeBanner: false,
+                title: StringConst.appName,
+                color: ColorConst.whiteColor,
+                onGenerateRoute: RouteGenerator.generateRoute,
+                initialRoute:  RouteGenerator.onBoardingScreen,
+              );
+            },
           );
-        },
+        }
       ),
     );
   }
