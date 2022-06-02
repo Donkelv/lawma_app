@@ -40,7 +40,7 @@ dependencies:
   shape_of_view: ^1.0.2
   firebase_core: any
   #firebase_analytics: any
-  firebase_auth: any
+  firebase_auth: 2.0.0
   firebase_database: any
   cloud_firestore: any
   firebase_storage: any
