@@ -106,7 +106,7 @@ class HomeScreen extends StatelessWidget {
                       return TopDriversWidget(
                         onTap: () {
                           customBottomSheet(
-                              context: context, widget: DriverDetailWidget(),);
+                              context: context, widget: const DriverDetailWidget(),);
                         },
                       );
                     }),
@@ -143,7 +143,13 @@ class HomeScreen extends StatelessWidget {
                     scrollDirection: Axis.horizontal,
                     itemCount: 5,
                     itemBuilder: (context, index) {
-                      return const AvailableDriversWidget();
+                      return AvailableDriversWidget(
+                        onTap: (){
+                          customBottomSheet(
+                              context: context, widget: const DriverDetailWidget(),);
+                        },
+                        
+                      );
                     }),
               ),
             ),

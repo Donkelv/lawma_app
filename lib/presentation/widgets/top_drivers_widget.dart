@@ -34,6 +34,7 @@ class TopDriversWidget extends StatelessWidget {
         child: Material(
           type: MaterialType.transparency,
           child: InkWell(
+             borderRadius: BorderRadius.circular(10.0),
             onTap: onTap,
             child: Column(
               mainAxisSize: MainAxisSize.min,

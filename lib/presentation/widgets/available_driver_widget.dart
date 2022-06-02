@@ -4,7 +4,9 @@ import 'package:lawma_app/data/constant/color_const.dart';
 import 'package:lawma_app/data/utils/theme_const.dart';
 
 class AvailableDriversWidget extends StatelessWidget {
+  final VoidCallback? onTap;
   const AvailableDriversWidget({
+    this.onTap,
     Key? key,
   }) : super(key: key);
 
@@ -26,46 +28,53 @@ class AvailableDriversWidget extends StatelessWidget {
             ),
           ],
         ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Container(
-              height: 157.0.h,
-              width: 220.0.w,
-              decoration: BoxDecoration(
-                color: ColorConst.lightGreyColor,
-                borderRadius: BorderRadius.circular(10.0),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 19.0.w),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(height: 3.0.h),
-                  Text(
-                    "Danny Shittu ",
-                    style: CustomTheme.smallText(context).copyWith(
-                      //color: ColorConst.dark,
-                      fontWeight: FontWeight.w600,
-                      //fontSize: 28.0.sp,
-                    ),
+        child: Material(
+          type: MaterialType.transparency,
+          child: InkWell(
+            borderRadius: BorderRadius.circular(10.0),
+            onTap: onTap,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Container(
+                  height: 157.0.h,
+                  width: 220.0.w,
+                  decoration: BoxDecoration(
+                    color: ColorConst.lightGreyColor,
+                    borderRadius: BorderRadius.circular(10.0),
                   ),
-                  Text(
-                    "16 Locations",
-                    style: CustomTheme.smallText(context).copyWith(
-                      color: ColorConst.lightGreyColor4,
-                      fontWeight: FontWeight.w500,
-                      //fontSize: 28.0.sp,
-                    ),
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 19.0.w),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(height: 3.0.h),
+                      Text(
+                        "Danny Shittu ",
+                        style: CustomTheme.smallText(context).copyWith(
+                          //color: ColorConst.dark,
+                          fontWeight: FontWeight.w600,
+                          //fontSize: 28.0.sp,
+                        ),
+                      ),
+                      Text(
+                        "16 Locations",
+                        style: CustomTheme.smallText(context).copyWith(
+                          color: ColorConst.lightGreyColor4,
+                          fontWeight: FontWeight.w500,
+                          //fontSize: 28.0.sp,
+                        ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );
