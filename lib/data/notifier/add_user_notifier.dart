@@ -22,7 +22,7 @@ class AddUserNotifier extends StateNotifier<AddDataState> {
   Future<void> addUser({String? userId, String? fullName}) {
     state = const AddDataState.loading();
     return users
-        .doc()
+        .doc(userId)
         .set(
           {
             'fullName': fullName, 

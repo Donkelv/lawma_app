@@ -15,7 +15,7 @@ class AddDriverNotifier extends StateNotifier<AddDataState> {
   Future<void> addDriver({String? userId, String? fullName, String? location, String? profilePic, String? truckPic, String? truckNumber, CardDetailsModel}) {
     state = const AddDataState.loading();
     return drivers
-        .doc()
+        .doc(userId)
         .set(
           {
             'fullName': fullName,
@@ -25,7 +25,7 @@ class AddDriverNotifier extends StateNotifier<AddDataState> {
             "truckNumber": "dvdfvdfvdf",
             'userType': UserType.driver,
             'userId': userId,
-            //'cardDetails': {},
+           
             'transHistory': [],
           }
         )
@@ -60,7 +60,7 @@ class UpdateDriverNotifier extends StateNotifier<AddDataState> {
             "truckNumber": "dvdfvdfvdf",
             'userType': UserType.driver,
             'userId': userId,
-            //'cardDetails': cardDetails,
+            
             'transHistory': [
               transHistory
             ],
