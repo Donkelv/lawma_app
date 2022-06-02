@@ -2,6 +2,8 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:lawma_app/data/models/card_details_model.dart';
+import 'package:lawma_app/data/models/trans_history_user.dart';
 import 'package:lawma_app/data/utils/user_type_model.dart';
 import 'package:lawma_app/domain/states/add_data_state.dart';
 
@@ -45,7 +47,7 @@ class UpdateUserNotifier extends StateNotifier<AddDataState> {
 
   CollectionReference users = FirebaseFirestore.instance.collection('users');
 
-  Future<void> updateUser({String? userId, String? fullName, Map<String, dynamic>? cardDetails, dynamic transHistory}) {
+  Future<void> updateUser({String? userId, String? fullName, CardDetailsModel? cardDetails, TransHistoryUser? transHistory}) {
     state = const AddDataState.loading();
     return users
         .doc(userId)

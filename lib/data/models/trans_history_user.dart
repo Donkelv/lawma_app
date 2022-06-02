@@ -3,6 +3,7 @@ class TransHistoryUser {
   final String amount;
   final DateTime date;
   final String location;
+  final int? rating;
   final DriverDetails driverDetails;
 
   TransHistoryUser({
@@ -11,6 +12,7 @@ class TransHistoryUser {
     required this.date,
     required this.driverDetails,
     required this.location,
+    this.rating,
   });
 
   factory TransHistoryUser.fromJson(Map<String, dynamic> json) =>
@@ -19,6 +21,7 @@ class TransHistoryUser {
         amount: json['amount'] as String,
         date: json['date'] as DateTime,
         location: json['location'] as String,
+        rating: json['rating'] as int,
         driverDetails: DriverDetails.fromJson(
             json['driverDetails'] as Map<String, dynamic>),
       );
@@ -47,12 +50,10 @@ class DriverDetails {
         busNumber: json['busNumber'] as String,
         busDriverName: json['busDriverName'] as String,
       );
-  
+
   Map<String, dynamic> toJson() => <String, dynamic>{
         'busImage': busImage,
         'busNumber': busNumber,
         'busDriverName': busDriverName,
       };
-
-
 }
