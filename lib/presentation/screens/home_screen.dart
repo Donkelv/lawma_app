@@ -6,6 +6,8 @@ import 'package:lawma_app/data/constant/color_const.dart';
 import 'package:lawma_app/data/constant/image_const.dart';
 import 'package:lawma_app/data/utils/theme_const.dart';
 import 'package:lawma_app/presentation/widgets/available_driver_widget.dart';
+import 'package:lawma_app/presentation/widgets/custom_bottom_sheet.dart';
+import 'package:lawma_app/presentation/widgets/driver_detail_widget.dart';
 import 'package:lawma_app/presentation/widgets/text_field.dart';
 import 'package:lawma_app/presentation/widgets/top_drivers_widget.dart';
 
@@ -101,7 +103,12 @@ class HomeScreen extends StatelessWidget {
                     scrollDirection: Axis.horizontal,
                     itemCount: 5,
                     itemBuilder: (context, index) {
-                      return const TopDriversWidget();
+                      return TopDriversWidget(
+                        onTap: () {
+                          customBottomSheet(
+                              context: context, widget: DriverDetailWidget(),);
+                        },
+                      );
                     }),
               ),
             ),

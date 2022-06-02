@@ -6,7 +6,9 @@ import 'package:lawma_app/data/constant/image_const.dart';
 import 'package:lawma_app/data/utils/theme_const.dart';
 
 class TopDriversWidget extends StatelessWidget {
+  final VoidCallback? onTap;
   const TopDriversWidget({
+    this.onTap,
     Key? key,
   }) : super(key: key);
 
@@ -29,37 +31,29 @@ class TopDriversWidget extends StatelessWidget {
             ),
           ],
         ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Container(
-              height: 117.0.h,
-              width: 229.0.w,
-              decoration: BoxDecoration(
-                color: ColorConst.lightGreyColor,
-                borderRadius: BorderRadius.circular(10.0),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 19.0.w),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Badagry",
-                    style: CustomTheme.smallText(context).copyWith(
-                      //color: ColorConst.dark,
-                      fontWeight: FontWeight.w500,
-                      //fontSize: 28.0.sp,
-                    ),
+        child: Material(
+          type: MaterialType.transparency,
+          child: InkWell(
+            onTap: onTap,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Container(
+                  height: 117.0.h,
+                  width: 229.0.w,
+                  decoration: BoxDecoration(
+                    color: ColorConst.lightGreyColor,
+                    borderRadius: BorderRadius.circular(10.0),
                   ),
-                  Row(
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 19.0.w),
+                  child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Driver : Samuel",
+                        "Badagry",
                         style: CustomTheme.smallText(context).copyWith(
                           //color: ColorConst.dark,
                           fontWeight: FontWeight.w500,
@@ -67,28 +61,42 @@ class TopDriversWidget extends StatelessWidget {
                         ),
                       ),
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Text(
-                            "4.5",
+                            "Driver : Samuel",
                             style: CustomTheme.smallText(context).copyWith(
                               //color: ColorConst.dark,
                               fontWeight: FontWeight.w500,
                               //fontSize: 28.0.sp,
                             ),
                           ),
-                          SizedBox(
-                            width: 5.0.w,
+                          Row(
+                            children: [
+                              Text(
+                                "4.5",
+                                style: CustomTheme.smallText(context).copyWith(
+                                  //color: ColorConst.dark,
+                                  fontWeight: FontWeight.w500,
+                                  //fontSize: 28.0.sp,
+                                ),
+                              ),
+                              SizedBox(
+                                width: 5.0.w,
+                              ),
+                              SvgPicture.asset(ImageConst.starIcon,
+                                  color: ColorConst.starColor),
+                            ],
                           ),
-                          SvgPicture.asset(ImageConst.starIcon,
-                              color: ColorConst.starColor),
                         ],
-                      ),
+                      )
                     ],
-                  )
-                ],
-              ),
-            )
-          ],
+                  ),
+                )
+              ],
+            ),
+          ),
         ),
       ),
     );
