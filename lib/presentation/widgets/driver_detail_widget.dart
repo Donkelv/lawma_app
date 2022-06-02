@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lawma_app/data/constant/color_const.dart';
 import 'package:lawma_app/data/utils/theme_const.dart';
+import 'package:lawma_app/presentation/widgets/custom_bottom_sheet.dart';
 import 'package:lawma_app/presentation/widgets/custom_button.dart';
+
+import 'booking_widget.dart';
 
 class DriverDetailWidget extends StatelessWidget {
   const DriverDetailWidget({Key? key}) : super(key: key);
@@ -66,14 +69,13 @@ class DriverDetailWidget extends StatelessWidget {
           Container(
             width: size.width,
             decoration: const BoxDecoration(
-              color: ColorConst.primaryColor3,
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(10.0),
-                topRight: Radius.circular(10.0),
-              )
-            ),
+                color: ColorConst.primaryColor3,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(10.0),
+                  topRight: Radius.circular(10.0),
+                )),
             child: Padding(
-              padding:  EdgeInsets.symmetric(horizontal: 20.0.w),
+              padding: EdgeInsets.symmetric(horizontal: 20.0.w),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -134,7 +136,7 @@ class DriverDetailWidget extends StatelessWidget {
                       ),
                     ],
                   ),
-                   SizedBox(
+                  SizedBox(
                     height: 17.0.h,
                   ),
                   Divider(
@@ -167,7 +169,7 @@ class DriverDetailWidget extends StatelessWidget {
                       ),
                     ],
                   ),
-                   SizedBox(
+                  SizedBox(
                     height: 17.0.h,
                   ),
                   Divider(
@@ -204,11 +206,14 @@ class DriverDetailWidget extends StatelessWidget {
                     height: 40.0.h,
                   ),
                   CustomButton(
-                    text: "Book Driver", 
-                    onTap: (){
-
-                    },),
-                    SizedBox(
+                    text: "Book Driver",
+                    onTap: () {
+                      Navigator.pop(context);
+                      customBottomSheet(
+                          context: context, widget: const BookingWidget(),);
+                    },
+                  ),
+                  SizedBox(
                     height: 40.0.h,
                   ),
                 ],
