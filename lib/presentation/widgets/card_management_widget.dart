@@ -3,6 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lawma_app/data/constant/color_const.dart';
 import 'package:lawma_app/data/utils/theme_const.dart';
 import 'package:lawma_app/presentation/widgets/card_list_widget.dart';
+import 'package:lawma_app/presentation/widgets/confirm_payment_sheet.dart';
+import 'package:lawma_app/presentation/widgets/custom_bottom_sheet.dart';
 import 'package:lawma_app/presentation/widgets/custom_button.dart';
 
 class CardmanagementWidget extends StatefulWidget {
@@ -13,7 +15,7 @@ class CardmanagementWidget extends StatefulWidget {
 }
 
 class _CardmanagementWidgetState extends State<CardmanagementWidget> {
-  int? selectedIndex;
+  int? selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -37,36 +39,43 @@ class _CardmanagementWidgetState extends State<CardmanagementWidget> {
             height: 20.0.h,
           ),
           ListView.builder(
-              itemCount: 3,
-              shrinkWrap: true,
-              itemBuilder: (context, index) {
-                return CardListWidget(
-                  touched: selectedIndex == index,
-                  onTap: () {
-                    setState(() {
-                      selectedIndex = index;
-                    });
-                  },
-                );
-              },),
-              SizedBox(
-                height: 10.0.h,
-              ),
-              TextButton(
-                onPressed: (){},
-                child: Text(
-                  "Add a new card",
-                  style: CustomTheme.normalText(context).copyWith(color: ColorConst.primaryColor),
-                ),
-              ),
-              SizedBox(
+            itemCount: 3,
+            shrinkWrap: true,
+            itemBuilder: (context, index) {
+              return CardListWidget(
+                touched: selectedIndex == index,
+                onTap: () {
+                  setState(() {
+                    selectedIndex = index;
+                  });
+                },
+              );
+            },
+          ),
+          SizedBox(
+            height: 10.0.h,
+          ),
+          TextButton(
+            onPressed: () {},
+            child: Text(
+              "Add a new card",
+              style: CustomTheme.normalText(context)
+                  .copyWith(color: ColorConst.primaryColor),
+            ),
+          ),
+          SizedBox(
             height: 30.0.h,
           ),
           CustomButton(
-            text: "Continue", 
-            onTap: (){
-
-            }),
+            text: "Continue",
+            onTap: () {
+              Navigator.pop(context);
+              customBottomSheet(
+                context: context,
+                widget: const ConfirmPaymentSheet(),
+              );
+            },
+          ),
           SizedBox(
             height: 30.0.h,
           ),
