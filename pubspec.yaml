@@ -44,6 +44,7 @@ dependencies:
   firebase_database: any
   cloud_firestore: any
   firebase_storage: any
+  fluttertoast: ^8.0.8
   
   
   flutter_riverpod: ^1.0.3

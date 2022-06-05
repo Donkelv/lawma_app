@@ -1,15 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:lawma_app/data/constant/color_const.dart';
 import 'package:lawma_app/data/constant/image_const.dart';
+import 'package:lawma_app/data/providers/auth_loader_provider.dart';
 import 'package:lawma_app/data/utils/theme_const.dart';
+import 'package:lawma_app/domain/states/auth_loading_state.dart';
 import 'package:lawma_app/presentation/routes/route_generator.dart';
 import 'package:lawma_app/presentation/widgets/custom_button.dart';
 import 'package:lawma_app/presentation/widgets/text_field.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
+
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  TextEditingController? emailController;
+  TextEditingController? passwordController;
+
+  @override
+  void initState() {
+    emailController = TextEditingController();
+    passwordController = TextEditingController();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    emailController?.dispose();
+    passwordController?.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -66,8 +92,8 @@ class LoginScreen extends StatelessWidget {
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 27.0.w),
-                  child: const CustomTextField(
-                    //controller: null,
+                  child: CustomTextField(
+                    controller: emailController,
                     hintText: "Enter e-mail address",
                     keyboardType: TextInputType.emailAddress,
                     prefixIcon: ImageConst.emailIcon,
@@ -78,8 +104,8 @@ class LoginScreen extends StatelessWidget {
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 27.0.w),
-                  child: const CustomTextField(
-                    //controller: null,
+                  child: CustomTextField(
+                    controller: passwordController,
                     hintText: "password",
                     keyboardType: TextInputType.visiblePassword,
                     prefixIcon: ImageConst.passwordIcon,
@@ -89,16 +115,26 @@ class LoginScreen extends StatelessWidget {
                   height: 120.0.h,
                 ),
                 //Spacer(),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 27.0.w),
-                  child: CustomButton(
-                    text: "Continue",
-                    onTap: () {
-                      Navigator.pushNamed(
-                          context, RouteGenerator.bottomAppBarScreen);
-                    },
-                  ),
-                ),
+                Consumer(builder: (context, ref, child) {
+                  if (ref.watch(signInProvider).isLoading) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else {
+                    return Padding(
+                      padding:  EdgeInsets.symmetric(horizontal: 27.0.w),
+                      child: CustomButton(
+                        onTap: () {
+                          ref.read(signInProvider.notifier).signIn(
+                                email: emailController!.text,
+                                password: passwordController!.text,
+                              );
+                        },
+                        text: "Sign in",
+                      ),
+                    );
+                  }
+                }),
                 SizedBox(
                   height: 5.0.h,
                 ),
@@ -111,17 +147,18 @@ class LoginScreen extends StatelessWidget {
                     child: RichText(
                       textAlign: TextAlign.center,
                       text: TextSpan(
-                          text: "Don't have an account? ",
-                          style: CustomTheme.smallText(context).copyWith(),
-                          children: [
-                            TextSpan(
-                              text: "Sign up",
-                              style: CustomTheme.smallText(context).copyWith(
-                                color: ColorConst.primaryColor,
-                                //fontWeight: FontWeight.w600,
-                              ),
+                        text: "Don't have an account? ",
+                        style: CustomTheme.smallText(context).copyWith(),
+                        children: [
+                          TextSpan(
+                            text: "Sign up",
+                            style: CustomTheme.smallText(context).copyWith(
+                              color: ColorConst.primaryColor,
+                              //fontWeight: FontWeight.w600,
                             ),
-                          ]),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 )
