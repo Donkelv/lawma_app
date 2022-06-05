@@ -1,14 +1,46 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lawma_app/data/constant/color_const.dart';
 import 'package:lawma_app/data/constant/image_const.dart';
+import 'package:lawma_app/data/providers/add_user_provider.dart';
+import 'package:lawma_app/data/providers/auth_loader_provider.dart';
 import 'package:lawma_app/data/utils/theme_const.dart';
+import 'package:lawma_app/domain/states/add_data_state.dart';
+import 'package:lawma_app/domain/states/auth_loading_state.dart';
 import 'package:lawma_app/presentation/widgets/custom_button.dart';
 import 'package:lawma_app/presentation/widgets/text_field.dart';
 
-class SignUpScreen extends StatelessWidget {
+class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
+
+  @override
+  State<SignUpScreen> createState() => _SignUpScreenState();
+}
+
+class _SignUpScreenState extends State<SignUpScreen> {
+
+
+  TextEditingController? emailController;
+  TextEditingController? fullNameController;
+  TextEditingController? passwordController;
+
+  @override
+  void initState() {
+    emailController = TextEditingController();
+    fullNameController = TextEditingController();
+    passwordController = TextEditingController();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    emailController?.dispose();
+    fullNameController?.dispose();
+    passwordController?.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -65,8 +97,8 @@ class SignUpScreen extends StatelessWidget {
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 27.0.w),
-                  child: const CustomTextField(
-                    //controller: null,
+                  child:  CustomTextField(
+                    controller: fullNameController,
                     hintText: "Enter Full Name",
                     keyboardType: TextInputType.name,
                     prefixIcon: ImageConst.userIcon,
@@ -77,8 +109,8 @@ class SignUpScreen extends StatelessWidget {
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 27.0.w),
-                  child: const CustomTextField(
-                    //controller: null,
+                  child:  CustomTextField(
+                    controller: emailController,
                     hintText: "Enter e-mail address",
                     keyboardType: TextInputType.emailAddress,
                     prefixIcon: ImageConst.emailIcon,
@@ -90,8 +122,8 @@ class SignUpScreen extends StatelessWidget {
 
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 27.0.w),
-                  child: const CustomTextField(
-                    //controller: null,
+                  child:  CustomTextField(
+                    controller: passwordController,
                     hintText: "Create password",
                     keyboardType: TextInputType.visiblePassword,
                     prefixIcon: ImageConst.passwordIcon,
@@ -102,8 +134,8 @@ class SignUpScreen extends StatelessWidget {
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 27.0.w),
-                  child: const CustomTextField(
-                    //controller: null,
+                  child:  CustomTextField(
+                    controller: passwordController,
                     hintText: "Repeat Password",
                     keyboardType: TextInputType.visiblePassword,
                     prefixIcon: ImageConst.passwordIcon,
@@ -113,12 +145,30 @@ class SignUpScreen extends StatelessWidget {
                   height: 250.0.h,
                 ),
                 //Spacer(),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 27.0.w),
-                  child: CustomButton(
-                    text: "Continue",
-                    onTap: () {},
-                  ),
+                Consumer(
+                  builder: (context, ref, child) {
+                    if (ref.watch(signUpProvider).isLoading || ref.watch(addUserProvider).isLoading) {
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    } else {
+                      return Padding(
+                        padding:  EdgeInsets.symmetric(horizontal: 27.0.w),
+                        child: CustomButton(
+                          onTap: () {
+                            ref.read(signUpProvider.notifier).signUp(
+                              fullName: fullNameController?.text,
+                              email: emailController?.text,
+                              password: passwordController?.text,
+                              context: context
+                            );
+                          },
+                          text: 'Sign up',
+                        ),
+                      );
+                    }
+                    
+                  }
                 ),
               ],
             ),

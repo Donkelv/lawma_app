@@ -128,6 +128,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           ref.read(signInProvider.notifier).signIn(
                                 email: emailController!.text,
                                 password: passwordController!.text,
+                                context: context,
                               );
                         },
                         text: "Sign in",
