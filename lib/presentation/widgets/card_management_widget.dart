@@ -7,6 +7,8 @@ import 'package:lawma_app/presentation/widgets/confirm_payment_sheet.dart';
 import 'package:lawma_app/presentation/widgets/custom_bottom_sheet.dart';
 import 'package:lawma_app/presentation/widgets/custom_button.dart';
 
+import 'add_card_sheet.dart';
+
 class CardmanagementWidget extends StatefulWidget {
   const CardmanagementWidget({Key? key}) : super(key: key);
 
@@ -56,7 +58,10 @@ class _CardmanagementWidgetState extends State<CardmanagementWidget> {
             height: 10.0.h,
           ),
           TextButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pop(context);
+              customBottomSheet(context: context, widget: const AddCardSheet(),);
+            },
             child: Text(
               "Add a new card",
               style: CustomTheme.normalText(context)

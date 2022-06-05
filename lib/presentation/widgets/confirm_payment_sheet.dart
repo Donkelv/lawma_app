@@ -105,10 +105,7 @@ class ConfirmPaymentSheet extends StatelessWidget {
             text: "Confirm",
             onTap: () {
               Navigator.pop(context);
-              // customBottomSheet(
-              //   context: context,
-              //   widget: const ConfirmPaymentSheet(),
-              // );
+             
             },
           ),
           SizedBox(
