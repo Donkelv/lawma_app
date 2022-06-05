@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:lawma_app/data/constant/color_const.dart';
 import 'package:lawma_app/data/constant/image_const.dart';
 import 'package:lawma_app/data/utils/theme_const.dart';

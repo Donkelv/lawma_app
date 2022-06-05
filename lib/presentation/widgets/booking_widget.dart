@@ -1,15 +1,15 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lawma_app/data/constant/image_const.dart';
 import 'package:lawma_app/data/utils/theme_const.dart';
+import 'package:lawma_app/presentation/widgets/card_management_widget.dart';
+import 'package:lawma_app/presentation/widgets/custom_bottom_sheet.dart';
 import 'package:lawma_app/presentation/widgets/text_field.dart';
 
 import 'custom_button.dart';
 
 class BookingWidget extends StatelessWidget {
-  const BookingWidget({ Key? key }) : super(key: key);
+  const BookingWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,29 +21,32 @@ class BookingWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           SizedBox(
-            height: 50.0.h,
+            height: 100.0.h,
           ),
           Align(
             alignment: Alignment.centerLeft,
             child: Text(
-              "Book Adeleye",
+              "Book Adeleye in Badagry Local Govt",
               textAlign: TextAlign.center,
               style: CustomTheme.mediumText(context),
             ),
           ),
           SizedBox(
-            height: 20.0.h,
+            height: 10.0.h,
           ),
-          Text(
-            "Enter your details below",
-            style: CustomTheme.normalText(context),
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Text(
+              "Enter your details below",
+              style: CustomTheme.normalText(context),
+            ),
           ),
           SizedBox(
-            height: 15.0.h,
+            height: 30.0.h,
           ),
           const CustomTextField(
             //controller: null,
-            hintText: "Enter your address below",
+            hintText: "Enter your address",
             keyboardType: TextInputType.emailAddress,
             prefixIcon: ImageConst.emailIcon,
           ),
@@ -52,7 +55,7 @@ class BookingWidget extends StatelessWidget {
           ),
           const CustomTextField(
             //controller: null,
-            hintText: "A brief description of your building(optional)",
+            hintText: "Brief description of building(optional)",
             keyboardType: TextInputType.emailAddress,
             prefixIcon: ImageConst.emailIcon,
           ),
@@ -62,12 +65,17 @@ class BookingWidget extends StatelessWidget {
           CustomButton(
             text: "Continue",
             onTap: () {
+              Navigator.pop(context);
+              customBottomSheet(
+                  context: context, widget: const CardmanagementWidget(),);
               //Navigator.pushNamed(context, RouteGenerator.bottomAppBarScreen);
             },
           ),
+          SizedBox(
+            height: 50.0.h,
+          ),
         ],
       ),
-      
     );
   }
 }
