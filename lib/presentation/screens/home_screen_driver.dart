@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lawma_app/data/constant/color_const.dart';
 import 'package:lawma_app/data/utils/theme_const.dart';
+import 'package:lawma_app/presentation/widgets/custom_bottom_sheet.dart';
 import 'package:lawma_app/presentation/widgets/refuse_collection_req_widget.dart';
+import 'package:lawma_app/presentation/widgets/request_details_sheet.dart';
 
 class HomeScreenDriver extends StatelessWidget {
   const HomeScreenDriver({Key? key}) : super(key: key);
@@ -49,7 +51,7 @@ class HomeScreenDriver extends StatelessWidget {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 27.0.w),
               child: Text(
-                "Refuse Collection Requests for this week",
+                "Pending refuse collection requests",
                 style: CustomTheme.semiLargeText(context).copyWith(
                   color: ColorConst.dark,
                   fontWeight: FontWeight.w600,
@@ -63,15 +65,18 @@ class HomeScreenDriver extends StatelessWidget {
             ),
             Expanded(
               child: ListView.builder(
-                padding: EdgeInsets.symmetric(vertical: 20.0.h, horizontal: 27.0.w),
-                scrollDirection: Axis.vertical,
-                physics: const BouncingScrollPhysics(),
+                  padding: EdgeInsets.symmetric(
+                      vertical: 20.0.h, horizontal: 27.0.w),
+                  scrollDirection: Axis.vertical,
+                  physics: const BouncingScrollPhysics(),
                   itemCount: 3,
                   shrinkWrap: true,
                   itemBuilder: (context, index) {
                     return RefuseCollectionReqWidget(
                       onTap: () {
-                        
+                        //Navigator.pop(context);
+                        customBottomSheet(
+                            context: context, widget: const RequestDetailsSheet(),);
                       },
                     );
                   }),

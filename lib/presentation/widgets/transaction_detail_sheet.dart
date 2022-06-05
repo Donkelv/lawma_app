@@ -89,14 +89,19 @@ class TransactionDetailSheet extends StatelessWidget {
                   fontWeight: FontWeight.w500,
                 ),
               ),
-              Text(
-                "Badagry",
-                textAlign: TextAlign.end,
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-                style: CustomTheme.normalText(context).copyWith(
-                  color: ColorConst.primaryColor,
-                  fontWeight: FontWeight.w500,
+               SizedBox(
+                width: 10.0.w,
+              ),
+              Expanded(
+                child: Text(
+                  "Badagry",
+                  textAlign: TextAlign.end,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: CustomTheme.normalText(context).copyWith(
+                    color: ColorConst.primaryColor,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
               ),
             ],
