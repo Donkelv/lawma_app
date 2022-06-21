@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+
 import 'package:lawma_app/data/constant/color_const.dart';
 import 'package:lawma_app/data/constant/image_const.dart';
 import 'package:lawma_app/data/providers/auth_loader_provider.dart';
@@ -115,27 +115,27 @@ class _LoginScreenState extends State<LoginScreen> {
                   height: 120.0.h,
                 ),
                 //Spacer(),
-                Consumer(builder: (context, ref, child) {
-                  if (ref.watch(signInProvider).isLoading) {
-                    return const Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  } else {
-                    return Padding(
-                      padding:  EdgeInsets.symmetric(horizontal: 27.0.w),
-                      child: CustomButton(
-                        onTap: () {
-                          ref.read(signInProvider.notifier).signIn(
-                                email: emailController!.text,
-                                password: passwordController!.text,
-                                context: context,
-                              );
-                        },
-                        text: "Sign in",
-                      ),
-                    );
-                  }
-                }),
+                // Consumer(builder: (context, ref, child) {
+                //   if (ref.watch(signInProvider).isLoading) {
+                //     return const Center(
+                //       child: CircularProgressIndicator(),
+                //     );
+                //   } else {
+                //     return Padding(
+                //       padding:  EdgeInsets.symmetric(horizontal: 27.0.w),
+                //       child: CustomButton(
+                //         onTap: () {
+                //           ref.read(signInProvider.notifier).signIn(
+                //                 email: emailController!.text,
+                //                 password: passwordController!.text,
+                //                 context: context,
+                //               );
+                //         },
+                //         text: "Sign in",
+                //       ),
+                //     );
+                //   }
+                // }),
                 SizedBox(
                   height: 5.0.h,
                 ),

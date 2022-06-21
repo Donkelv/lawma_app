@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hive/hive.dart';
+import 'package:lawma_app/data/constant/string_const.dart';
 import 'package:lawma_app/data/models/card_details_model.dart';
 import 'package:lawma_app/data/models/trans_history_user.dart';
 import 'package:lawma_app/data/utils/user_type_model.dart';
@@ -18,6 +20,8 @@ class AddUserNotifier extends StateNotifier<AddDataState> {
 
   Future<void> addUser(
       {String? userId, String? fullName, required BuildContext context}) {
+        final userType = Hive.box<String>(StringConst.userTypeBox);
+    final userID = Hive.box<String>(StringConst.userIdBox);
     state = const AddDataState.loading();
     return users.doc(userId).set({
       'fullName': fullName,
@@ -28,6 +32,8 @@ class AddUserNotifier extends StateNotifier<AddDataState> {
     }).then((value) {
       
       state = const AddDataState.success("User successfully created");
+      userType.put(StringConst.userTypeKey, UserType.user);
+      userID.put(StringConst.userIdKey, userId!);
       Navigator.pushNamed(context, RouteGenerator.bottomAppBarScreen);
     }).catchError(
         (error) => state = const AddDataState.error("Error creating user"));

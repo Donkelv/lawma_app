@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:hive/hive.dart';
+import 'package:lawma_app/data/constant/string_const.dart';
 import 'package:lawma_app/data/providers/add_user_provider.dart';
+import 'package:lawma_app/data/utils/user_type_model.dart';
 import 'package:lawma_app/domain/repository/auth_repository.dart';
 import 'package:lawma_app/domain/states/auth_loading_state.dart';
 import 'package:lawma_app/presentation/routes/route_generator.dart';
@@ -21,6 +24,8 @@ class SignInLoaderNotifier extends StateNotifier<AuthLoadingState> {
 
   Future signIn(
       {String? email, String? password, required BuildContext context}) async {
+    final userType = Hive.box<String>(StringConst.userTypeBox);
+    final userId = Hive.box<String>(StringConst.userIdBox);
     if (email!.isEmpty || password!.isEmpty) {
       state = const AuthLoadingState.error('Please fill all the fields');
       Fluttertoast.showToast(
@@ -39,6 +44,8 @@ class SignInLoaderNotifier extends StateNotifier<AuthLoadingState> {
             await _signInRepository.signInWithEmailAndPassword(email, password);
         data.fold((l) => state = AuthLoadingState.error(l.toString()), (r) {
           state = AuthLoadingState.authenticated(r);
+          userType.put(StringConst.userTypeKey, UserType.user);
+          userId.put(StringConst.userIdKey, r.uid);
           Navigator.pushNamed(context, RouteGenerator.bottomAppBarScreen);
         });
       } catch (e) {
@@ -74,6 +81,8 @@ class SignUpNotifier extends StateNotifier<AuthLoadingState> {
       String? email,
       String? password,
       required BuildContext context}) async {
+    final userType = Hive.box<String>(StringConst.userTypeBox);
+    final userId = Hive.box<String>(StringConst.userIdBox);
     if (fullName!.isEmpty || email!.isEmpty || password!.isEmpty) {
       state = const AuthLoadingState.error('Please fill all the fields');
       Fluttertoast.showToast(
@@ -90,7 +99,8 @@ class SignUpNotifier extends StateNotifier<AuthLoadingState> {
       try {
         final data = await _signUpRepository.createUserWithEmailAndPassword(
             email, password);
-        data.fold((l) => state = AuthLoadingState.error(l.toString()), (r) {
+        data.fold((l) => state = AuthLoadingState.error(l.toString()), 
+        (r) {
           Fluttertoast.showToast(
               msg: "Setting up user data",
               toastLength: Toast.LENGTH_SHORT,

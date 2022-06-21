@@ -44,6 +44,17 @@ class BookingWidget extends StatelessWidget {
           SizedBox(
             height: 30.0.h,
           ),
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Text(
+              "Enter your address",
+              style: CustomTheme.smallText(context),
+            ),
+          ),
+          SizedBox(
+            height: 5.0.h,
+          
+          ),
           const CustomTextField(
             //controller: null,
             hintText: "Enter your address",
@@ -53,9 +64,38 @@ class BookingWidget extends StatelessWidget {
           SizedBox(
             height: 15.0.h,
           ),
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Text(
+              "Enter a brief description of your building",
+              style: CustomTheme.smallText(context),
+            ),
+          ),
+          SizedBox(
+            height: 5.0.h,
+          ),
           const CustomTextField(
             //controller: null,
             hintText: "Brief description of building(optional)",
+            keyboardType: TextInputType.emailAddress,
+            prefixIcon: ImageConst.emailIcon,
+          ),
+           SizedBox(
+            height: 15.0.h,
+          ),
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Text(
+              "Enter tonnes of waste(KG)",
+              style: CustomTheme.smallText(context),
+            ),
+          ),
+          SizedBox(
+            height: 5.0.h,
+          ),
+          const CustomTextField(
+            //controller: null,
+            hintText: "50kg",
             keyboardType: TextInputType.emailAddress,
             prefixIcon: ImageConst.emailIcon,
           ),

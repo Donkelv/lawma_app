@@ -24,17 +24,17 @@ class RouteSelector extends StatelessWidget {
     return ProviderScope(
       child: Consumer(
         builder: (context, ref, child) {
-           
+        
           return ScreenUtilInit(
             designSize: const Size(375, 854),
-            builder: () {
+            builder: (context, child) {
               return MaterialApp(
                 theme: CustomTheme.getTheme(),
                 debugShowCheckedModeBanner: false,
                 title: StringConst.appName,
                 color: ColorConst.whiteColor,
                 onGenerateRoute: RouteGenerator.generateRoute,
-                initialRoute:  RouteGenerator.onBoardingScreen,
+                initialRoute:  RouteGenerator.bottomAppBarScreen,
               );
             },
           );

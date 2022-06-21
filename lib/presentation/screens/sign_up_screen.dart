@@ -145,31 +145,31 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   height: 250.0.h,
                 ),
                 //Spacer(),
-                Consumer(
-                  builder: (context, ref, child) {
-                    if (ref.watch(signUpProvider).isLoading || ref.watch(addUserProvider).isLoading) {
-                      return const Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    } else {
-                      return Padding(
-                        padding:  EdgeInsets.symmetric(horizontal: 27.0.w),
-                        child: CustomButton(
-                          onTap: () {
-                            ref.read(signUpProvider.notifier).signUp(
-                              fullName: fullNameController?.text,
-                              email: emailController?.text,
-                              password: passwordController?.text,
-                              context: context
-                            );
-                          },
-                          text: 'Sign up',
-                        ),
-                      );
-                    }
+                // Consumer(
+                //   builder: (context, ref, child) {
+                //     if (ref.watch(signUpProvider).isLoading || ref.watch(addUserProvider).isLoading) {
+                //       return const Center(
+                //         child: CircularProgressIndicator(),
+                //       );
+                //     } else {
+                //       return Padding(
+                //         padding:  EdgeInsets.symmetric(horizontal: 27.0.w),
+                //         child: CustomButton(
+                //           onTap: () {
+                //             ref.read(signUpProvider.notifier).signUp(
+                //               fullName: fullNameController?.text,
+                //               email: emailController?.text,
+                //               password: passwordController?.text,
+                //               context: context
+                //             );
+                //           },
+                //           text: 'Sign up',
+                //         ),
+                //       );
+                //     }
                     
-                  }
-                ),
+                //   }
+                // ),
               ],
             ),
           ),
