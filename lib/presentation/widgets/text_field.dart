@@ -10,12 +10,14 @@ class CustomTextField extends StatelessWidget {
   final String prefixIcon;
   final TextInputType keyboardType;
   final TextEditingController? controller;
+  final Function(String)? onChanged;
 
   const CustomTextField(
       {Key? key,
       required this.hintText,
       required this.prefixIcon,
       required this.keyboardType,
+     this.onChanged,
       this.controller})
       : super(key: key);
 
@@ -31,29 +33,28 @@ class CustomTextField extends StatelessWidget {
         ),
       ),
       child: TextFormField(
-      controller: controller,
+        onChanged: onChanged,
+        controller: controller,
         keyboardType: keyboardType,
         textAlignVertical: TextAlignVertical.center,
         decoration: InputDecoration(
-            contentPadding: EdgeInsets.symmetric(horizontal: 15.0.w),
-            border: InputBorder.none,
-            hintText: hintText,
-            hintStyle: CustomTheme.normalText(context).copyWith(
-              color: ColorConst.lightGreyColor3,
-              fontWeight: FontWeight.w400,
-            ),
-            prefixIcon: SvgPicture.asset(
-              prefixIcon,
-              fit: BoxFit.scaleDown,
-              color: ColorConst.lightGreyColor3,
-            )),
+          contentPadding: EdgeInsets.symmetric(horizontal: 15.0.w),
+          border: InputBorder.none,
+          hintText: hintText,
+          hintStyle: CustomTheme.normalText(context).copyWith(
+            color: ColorConst.lightGreyColor3,
+            fontWeight: FontWeight.w400,
+          ),
+          prefixIcon: SvgPicture.asset(
+            prefixIcon,
+            fit: BoxFit.scaleDown,
+            color: ColorConst.lightGreyColor3,
+          ),
+        ),
       ),
     );
   }
 }
-
-
-
 
 class CustomCVVTextField extends StatelessWidget {
   final String hintText;
@@ -81,26 +82,25 @@ class CustomCVVTextField extends StatelessWidget {
         ),
       ),
       child: TextFormField(
-        
         maxLength: 3,
         keyboardType: keyboardType,
         textAlign: TextAlign.center,
         textAlignVertical: TextAlignVertical.center,
         decoration: InputDecoration(
           counter: const Offstage(),
-            contentPadding: EdgeInsets.symmetric(horizontal: 15.0.w),
-            border: InputBorder.none,
-            hintText: hintText,
-            hintStyle: CustomTheme.normalText(context).copyWith(
-              color: ColorConst.lightGreyColor3,
-              fontWeight: FontWeight.w400,
-            ),
-            // prefixIcon: SvgPicture.asset(
-            //   prefixIcon,
-            //   fit: BoxFit.scaleDown,
-            //   color: ColorConst.lightGreyColor3,
-            // ),
+          contentPadding: EdgeInsets.symmetric(horizontal: 15.0.w),
+          border: InputBorder.none,
+          hintText: hintText,
+          hintStyle: CustomTheme.normalText(context).copyWith(
+            color: ColorConst.lightGreyColor3,
+            fontWeight: FontWeight.w400,
           ),
+          // prefixIcon: SvgPicture.asset(
+          //   prefixIcon,
+          //   fit: BoxFit.scaleDown,
+          //   color: ColorConst.lightGreyColor3,
+          // ),
+        ),
       ),
     );
   }
@@ -156,7 +156,6 @@ class CustomPinTextField extends StatelessWidget {
   }
 }
 
-
 class CustomExpiryDateTextField extends StatefulWidget {
   final String hintText;
   final String prefixIcon;
@@ -172,7 +171,8 @@ class CustomExpiryDateTextField extends StatefulWidget {
       : super(key: key);
 
   @override
-  State<CustomExpiryDateTextField> createState() => _CustomExpiryDateTextFieldState();
+  State<CustomExpiryDateTextField> createState() =>
+      _CustomExpiryDateTextFieldState();
 }
 
 class _CustomExpiryDateTextFieldState extends State<CustomExpiryDateTextField> {
@@ -193,7 +193,6 @@ class _CustomExpiryDateTextFieldState extends State<CustomExpiryDateTextField> {
         textAlignVertical: TextAlignVertical.center,
         textAlign: TextAlign.center,
         decoration: InputDecoration(
-          
           counter: const Offstage(),
           contentPadding: EdgeInsets.symmetric(horizontal: 15.0.w),
           border: InputBorder.none,
@@ -207,7 +206,6 @@ class _CustomExpiryDateTextFieldState extends State<CustomExpiryDateTextField> {
           //   fit: BoxFit.scaleDown,
           //   color: ColorConst.lightGreyColor3,
           // ),
-          
         ),
         onChanged: (value) {
           setState(
@@ -255,4 +253,3 @@ class _CustomExpiryDateTextFieldState extends State<CustomExpiryDateTextField> {
     );
   }
 }
-

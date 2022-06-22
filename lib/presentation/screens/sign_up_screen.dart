@@ -13,6 +13,7 @@ import 'package:lawma_app/data/providers/auth_loader_provider.dart';
 import 'package:lawma_app/data/utils/theme_const.dart';
 import 'package:lawma_app/domain/states/add_data_state.dart';
 import 'package:lawma_app/domain/states/auth_loading_state.dart';
+import 'package:lawma_app/domain/states/state_lga_state.dart';
 import 'package:lawma_app/presentation/widgets/custom_button.dart';
 import 'package:lawma_app/presentation/widgets/text_field.dart';
 
@@ -39,6 +40,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
     repeatPasswordController = TextEditingController();
     super.initState();
     Future.delayed(Duration.zero, () {
+      ref.watch(lgaProvider).isData ? null :
       ref.watch(lgaProvider.notifier).getLga();
     });
   }
