@@ -31,7 +31,7 @@ class CustomTextField extends StatelessWidget {
         ),
       ),
       child: TextFormField(
-      
+      controller: controller,
         keyboardType: keyboardType,
         textAlignVertical: TextAlignVertical.center,
         decoration: InputDecoration(

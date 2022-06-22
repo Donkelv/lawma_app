@@ -16,17 +16,18 @@ import 'package:lawma_app/domain/states/auth_loading_state.dart';
 import 'package:lawma_app/presentation/widgets/custom_button.dart';
 import 'package:lawma_app/presentation/widgets/text_field.dart';
 
-class SignUpScreen extends StatefulWidget {
+class SignUpScreen extends ConsumerStatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
 
   @override
-  State<SignUpScreen> createState() => _SignUpScreenState();
+  ConsumerState<SignUpScreen> createState() => _SignUpScreenState();
 }
 
-class _SignUpScreenState extends State<SignUpScreen> {
+class _SignUpScreenState extends ConsumerState<SignUpScreen> {
   TextEditingController? emailController;
   TextEditingController? fullNameController;
   TextEditingController? passwordController;
+  TextEditingController? repeatPasswordController;
 
   String? selectedCity;
 
@@ -35,14 +36,19 @@ class _SignUpScreenState extends State<SignUpScreen> {
     emailController = TextEditingController();
     fullNameController = TextEditingController();
     passwordController = TextEditingController();
+    repeatPasswordController = TextEditingController();
     super.initState();
+    Future.delayed(Duration.zero, () {
+      ref.watch(lgaProvider.notifier).getLga();
+    });
   }
 
   @override
   void dispose() {
-    emailController?.dispose();
-    fullNameController?.dispose();
-    passwordController?.dispose();
+    emailController!.clear();
+    fullNameController!.clear();
+    passwordController!.clear();
+    repeatPasswordController!.clear();
     super.dispose();
   }
 
@@ -140,7 +146,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 27.0.w),
                   child: CustomTextField(
-                    controller: passwordController,
+                    controller: repeatPasswordController,
                     hintText: "Repeat Password",
                     keyboardType: TextInputType.visiblePassword,
                     prefixIcon: ImageConst.passwordIcon,
@@ -152,7 +158,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 Consumer(builder: (context, ref, child) {
                   return ref.watch(lgaProvider).when(
                     initial: () {
-                     return Center(
+                      return Center(
                         child: Platform.isIOS
                             ? const CircularProgressIndicator.adaptive(
                                 backgroundColor: ColorConst.primaryColor,
@@ -202,13 +208,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     },
                     data: (stateLga) {
                       return Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 20.0.w),
+                        padding: EdgeInsets.symmetric(horizontal: 27.0.w),
                         child: Container(
                           height: 59.h,
                           width: size.width,
                           decoration: BoxDecoration(
-                            color: ColorConst.lightGreyColor3,
-                            borderRadius: BorderRadius.circular(20.sp),
+                            color: ColorConst.whiteColor,
+                            borderRadius: BorderRadius.circular(36),
+                            border: Border.all(
+                              width: 1,
+                              color: ColorConst.lightGreyColor2,
+                            ),
                           ),
                           alignment: Alignment.center,
                           padding: EdgeInsets.symmetric(horizontal: 15.w),
@@ -219,7 +229,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               child: DropdownButtonHideUnderline(
                                 child: DropdownButton2<String>(
                                   isExpanded: true,
-                                  icon: SvgPicture.asset(ImageConst.circlearrow),
+                                  icon:
+                                      SvgPicture.asset(ImageConst.circlearrow),
                                   hint: Text(
                                     "City",
                                     style: CustomTheme.normalText(context)
@@ -230,15 +241,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   ),
                                   items: stateLga.data!
                                       .map<DropdownMenuItem<String>>(
-                                          (e) => DropdownMenuItem<String>(
-                                                value: e.abbreviation,
-                                                child: Text(
-                                                  e.name!,
-                                                  style: const TextStyle(
-                                                    fontSize: 14,
-                                                  ),
-                                                ),
-                                              ),)
+                                        (e) => DropdownMenuItem<String>(
+                                          value: e.abbreviation,
+                                          child: Text(
+                                            e.name!,
+                                            style: const TextStyle(
+                                              fontSize: 14,
+                                            ),
+                                          ),
+                                        ),
+                                      )
                                       .toList(),
                                   value: selectedCity,
                                   onChanged: (String? value) {
@@ -261,13 +273,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 }),
 
                 SizedBox(
-                  height: 250.0.h,
+                  height: 100.0.h,
                 ),
 
                 //Spacer(),
                 Consumer(builder: (context, ref, child) {
-                  if (ref.watch(signUpProvider).isLoading ||
-                      ref.watch(addUserProvider).isLoading) {
+                  if (ref.watch(signUpProvider).isLoading) {
                     return const Center(
                       child: CircularProgressIndicator(),
                     );
@@ -277,9 +288,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       child: CustomButton(
                         onTap: () {
                           ref.read(signUpProvider.notifier).signUp(
-                              fullName: fullNameController?.text,
-                              email: emailController?.text,
-                              password: passwordController?.text,
+                              fullName: fullNameController!.text,
+                              email: emailController!.text,
+                              password: passwordController!.text,
+                              repeatPassword: repeatPasswordController!.text,
                               city: selectedCity,
                               context: context);
                         },

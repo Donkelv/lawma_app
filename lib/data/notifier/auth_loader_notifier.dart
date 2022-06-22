@@ -88,13 +88,29 @@ class SignUpNotifier extends StateNotifier<AuthLoadingState> {
       String? email,
       String? password,
       String? city,
+      String? repeatPassword,
       required BuildContext context}) async {
-    final userType = Hive.box<String>(StringConst.userTypeBox);
-    final userId = Hive.box<String>(StringConst.userIdBox);
-    if (fullName!.isEmpty || email!.isEmpty || password!.isEmpty) {
+    //final userType = Hive.box<String>(StringConst.userTypeBox);
+    //final userId = Hive.box<String>(StringConst.userIdBox);
+    if (fullName!.isEmpty ||
+        email!.isEmpty ||
+        password!.isEmpty ||
+        city!.isEmpty) {
       state = const AuthLoadingState.error('Please fill all the fields');
       Fluttertoast.showToast(
           msg: "Please fill all the fields",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 12.0.sp);
+      return;
+    } else if (password != repeatPassword) {
+      state = const AuthLoadingState.error(
+          'Password does not match\nplease check and try again');
+      Fluttertoast.showToast(
+          msg: "Password does not match\nplease check and try again",
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.CENTER,
           timeInSecForIosWeb: 1,
@@ -109,7 +125,17 @@ class SignUpNotifier extends StateNotifier<AuthLoadingState> {
           email,
           password,
         );
-        data.fold((l) => state = AuthLoadingState.error(l.toString()), (r) {
+        data.fold((l) {
+          state = AuthLoadingState.error(l.toString());
+          Fluttertoast.showToast(
+              msg: l,
+              toastLength: Toast.LENGTH_SHORT,
+              gravity: ToastGravity.CENTER,
+              timeInSecForIosWeb: 1,
+              backgroundColor: Colors.red,
+              textColor: Colors.white,
+              fontSize: 12.0.sp);
+        }, (r) {
           Fluttertoast.showToast(
               msg: "Setting up user data",
               toastLength: Toast.LENGTH_SHORT,
