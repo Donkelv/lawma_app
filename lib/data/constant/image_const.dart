@@ -24,4 +24,5 @@ class ImageConst {
   static const String userIcon = svgAssetRoute + "user_icon.svg";
   static const String location = svgAssetRoute + "location.svg";
   static const String circlearrow = svgAssetRoute + "circlearrow.svg";
+  static const String camerIcon = svgAssetRoute + "cameraIcon.svg";
 }
