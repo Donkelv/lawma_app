@@ -77,14 +77,25 @@ class _HomeScreeenAdminState extends ConsumerState<HomeScreeenAdmin> {
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 27.0.w),
-              child: Text(
-                "Add New Drivers",
-                style: CustomTheme.semiLargeText(context).copyWith(
-                  color: ColorConst.dark,
-                  fontWeight: FontWeight.w600,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    "Add New Drivers",
+                    style: CustomTheme.semiLargeText(context).copyWith(
+                      color: ColorConst.dark,
+                      fontWeight: FontWeight.w600,
 
-                  // fontSize: 28.0.sp,
-                ),
+                      // fontSize: 28.0.sp,
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: (){
+
+                    }, 
+                    icon: SvgPicture.asset(ImageConst.logOutIcon),)
+                ],
               ),
             ),
             SizedBox(
@@ -134,7 +145,7 @@ class _HomeScreeenAdminState extends ConsumerState<HomeScreeenAdmin> {
                                             CrossAxisAlignment.center,
                                         children: [
                                           SizedBox(
-                                            height: 20.0.h,
+                                            height: 30.0.h,
                                           ),
                                           Text(
                                             "Add a truck Image",

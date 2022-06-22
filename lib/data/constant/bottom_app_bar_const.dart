@@ -18,9 +18,9 @@ class BottomAppBarModel {
 }
 
 List<BottomAppBarModel> bottomAppBarList = [
-  const BottomAppBarModel(icon: ImageConst.homeIcon, page: HomeScreeenAdmin()),
+  const BottomAppBarModel(icon: ImageConst.homeIcon, page: HomeScreen()),
   const BottomAppBarModel(
-      icon: ImageConst.historyIcon, page: DriverListScreen()),
+      icon: ImageConst.historyIcon, page: TransactionHistoryScreen()),
   const BottomAppBarModel(icon: ImageConst.profileIcon, page: ProfileScreen()),
 ];
 
@@ -34,8 +34,8 @@ List<BottomAppBarModel> bottomAppBarDriver = [
 
 
 List<BottomAppBarModel> bottomAppBarAdmin = [
-  const BottomAppBarModel(icon: ImageConst.homeIcon, page: HomeScreenDriver()),
+  const BottomAppBarModel(icon: ImageConst.homeIcon, page: HomeScreeenAdmin()),
   const BottomAppBarModel(
-      icon: ImageConst.historyIcon, page: TransactionHistoryScreen()),
-  const BottomAppBarModel(icon: ImageConst.profileIcon, page: ProfileScreen()),
+      icon: ImageConst.historyIcon, page: DriverListScreen()),
+  //const BottomAppBarModel(icon: ImageConst.profileIcon, page: ProfileScreen()),
 ];
