@@ -13,6 +13,8 @@ import 'package:lawma_app/presentation/widgets/text_field.dart';
 import 'package:lawma_app/presentation/widgets/transaction_detail_sheet.dart';
 import 'package:lawma_app/presentation/widgets/transaction_widget.dart';
 
+import '../widgets/driver_details_admin_sheet.dart';
+
 class DriverListScreen extends StatelessWidget {
   const DriverListScreen({Key? key}) : super(key: key);
 
@@ -97,7 +99,7 @@ class DriverListScreen extends StatelessWidget {
                             debugPrint("touched");
                             customBottomSheet(
                               context: context,
-                              widget: const TransactionDetailSheet(),
+                              widget:  DriverDetailsAdminSheet(data: data),
                             );
                           },
                           data: data,
