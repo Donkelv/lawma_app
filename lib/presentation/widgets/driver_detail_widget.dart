@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lawma_app/data/constant/color_const.dart';
+import 'package:lawma_app/data/models/driver_list_model.dart';
 import 'package:lawma_app/data/utils/theme_const.dart';
 import 'package:lawma_app/presentation/widgets/custom_bottom_sheet.dart';
 import 'package:lawma_app/presentation/widgets/custom_button.dart';
@@ -8,7 +9,8 @@ import 'package:lawma_app/presentation/widgets/custom_button.dart';
 import 'booking_widget.dart';
 
 class DriverDetailWidget extends StatelessWidget {
-  const DriverDetailWidget({Key? key}) : super(key: key);
+  final DriverListModel? driverList;
+  const DriverDetailWidget({Key? key,  required this.driverList}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -37,9 +39,10 @@ class DriverDetailWidget extends StatelessWidget {
               child: Container(
                 width: 80.0.w,
                 height: 80.0.h,
-                decoration: const BoxDecoration(
+                decoration:  BoxDecoration(
                   color: ColorConst.lightGreyColor,
                   shape: BoxShape.circle,
+                  image: DecorationImage(image: NetworkImage(driverList!.profilePic!), fit: BoxFit.cover),
                 ),
               ),
             ),
@@ -48,7 +51,7 @@ class DriverDetailWidget extends StatelessWidget {
             height: 13.0.h,
           ),
           Text(
-            "Sammy John",
+            driverList!.fullName!,
             textAlign: TextAlign.center,
             style: CustomTheme.normalText(context),
           ),
@@ -61,6 +64,9 @@ class DriverDetailWidget extends StatelessWidget {
             decoration: BoxDecoration(
               color: ColorConst.lightGreyColor,
               borderRadius: BorderRadius.circular(10.0),
+              image: DecorationImage(
+                  image: NetworkImage(driverList!.truckPic!),
+                  fit: BoxFit.cover),
             ),
           ),
           SizedBox(
@@ -73,7 +79,7 @@ class DriverDetailWidget extends StatelessWidget {
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(10.0),
                   topRight: Radius.circular(10.0),
-                )),
+                ),),
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 20.0.w),
               child: Column(
@@ -95,7 +101,7 @@ class DriverDetailWidget extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        "22335tg",
+                        driverList!.truckNumber!,
                         style: CustomTheme.normalText(context).copyWith(
                           color: ColorConst.primaryColor,
                           fontWeight: FontWeight.w500,
@@ -125,7 +131,7 @@ class DriverDetailWidget extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        "Badagry",
+                        driverList!.location!,
                         textAlign: TextAlign.end,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
@@ -143,65 +149,65 @@ class DriverDetailWidget extends StatelessWidget {
                     color: ColorConst.lightPrimaryColor,
                     thickness: 2.0.h,
                   ),
-                  SizedBox(
-                    height: 17.0.h,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text(
-                        "Phone Number",
-                        style: CustomTheme.normalText(context).copyWith(
-                          color: ColorConst.blackColor,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      Text(
-                        "01/3/22",
-                        textAlign: TextAlign.end,
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                        style: CustomTheme.normalText(context).copyWith(
-                          color: ColorConst.primaryColor,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 17.0.h,
-                  ),
-                  Divider(
-                    color: ColorConst.lightPrimaryColor,
-                    thickness: 2.0.h,
-                  ),
-                  SizedBox(
-                    height: 17.0.h,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text(
-                        "Rating",
-                        style: CustomTheme.normalText(context).copyWith(
-                          color: ColorConst.blackColor,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      Text(
-                        "4.0",
-                        textAlign: TextAlign.end,
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                        style: CustomTheme.normalText(context).copyWith(
-                          color: ColorConst.primaryColor,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ],
-                  ),
+                  // SizedBox(
+                  //   height: 17.0.h,
+                  // ),
+                  // Row(
+                  //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //   crossAxisAlignment: CrossAxisAlignment.center,
+                  //   children: [
+                  //     Text(
+                  //       "Phone Number",
+                  //       style: CustomTheme.normalText(context).copyWith(
+                  //         color: ColorConst.blackColor,
+                  //         fontWeight: FontWeight.w500,
+                  //       ),
+                  //     ),
+                  //     Text(
+                  //       "01/3/22",
+                  //       textAlign: TextAlign.end,
+                  //       maxLines: 2,
+                  //       overflow: TextOverflow.ellipsis,
+                  //       style: CustomTheme.normalText(context).copyWith(
+                  //         color: ColorConst.primaryColor,
+                  //         fontWeight: FontWeight.w500,
+                  //       ),
+                  //     ),
+                  //   ],
+                  // ),
+                  // SizedBox(
+                  //   height: 17.0.h,
+                  // ),
+                  // Divider(
+                  //   color: ColorConst.lightPrimaryColor,
+                  //   thickness: 2.0.h,
+                  // ),
+                  // SizedBox(
+                  //   height: 17.0.h,
+                  // ),
+                  // Row(
+                  //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //   crossAxisAlignment: CrossAxisAlignment.center,
+                  //   children: [
+                  //     Text(
+                  //       "Rating",
+                  //       style: CustomTheme.normalText(context).copyWith(
+                  //         color: ColorConst.blackColor,
+                  //         fontWeight: FontWeight.w500,
+                  //       ),
+                  //     ),
+                  //     Text(
+                  //       "4.0",
+                  //       textAlign: TextAlign.end,
+                  //       maxLines: 2,
+                  //       overflow: TextOverflow.ellipsis,
+                  //       style: CustomTheme.normalText(context).copyWith(
+                  //         color: ColorConst.primaryColor,
+                  //         fontWeight: FontWeight.w500,
+                  //       ),
+                  //     ),
+                  //   ],
+                  // ),
                   SizedBox(
                     height: 40.0.h,
                   ),
@@ -210,7 +216,11 @@ class DriverDetailWidget extends StatelessWidget {
                     onTap: () {
                       Navigator.pop(context);
                       customBottomSheet(
-                          context: context, widget: const BookingWidget(),);
+                        context: context,
+                        widget:  BookingWidget(
+                          driverList: driverList,
+                        ),
+                      );
                     },
                   ),
                   SizedBox(

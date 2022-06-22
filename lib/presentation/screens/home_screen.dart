@@ -179,7 +179,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                         onTap: () {
                           customBottomSheet(
                             context: context,
-                            widget:  DriverDetailWidget(),
+                            widget:  DriverDetailWidget(
+                              driverList: ref.watch(driverListProvider)[index],
+                            ),
                           );
                         },
                       );

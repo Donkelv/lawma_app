@@ -21,11 +21,12 @@ class DriverListNotifier extends StateNotifier<List<DriverListModel>> {
     } else {
       debugPrint("not empty");
       //print(driverListState);
-      state = driverListState
-          .where((element) =>
-              element.fullName!.toLowerCase().contains(query.toLowerCase()))
+      state = driverListState.where((element) {
+        return element.fullName!.toLowerCase().contains(query.toLowerCase()) ||
+            element.location!.toLowerCase().contains(query.toLowerCase());
+      })
+          //.where((element) => element.location!.toLowerCase().contains(query.toLowerCase()))
           .toList();
-      
     }
   }
 }
