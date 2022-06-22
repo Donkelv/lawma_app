@@ -152,55 +152,29 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 Consumer(builder: (context, ref, child) {
                   return ref.watch(lgaProvider).when(
                     initial: () {
-                      return Column(
-                        mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          SizedBox(
-                            height: 200.0.h,
-                          ),
-                          Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 15.0.w),
-                            child: Text(
-                              "Select a state first",
-                              textAlign: TextAlign.center,
-                              style: CustomTheme.normalText(context),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 200.0.h,
-                          ),
-                        ],
+                     return Center(
+                        child: Platform.isIOS
+                            ? const CircularProgressIndicator.adaptive(
+                                backgroundColor: ColorConst.primaryColor,
+                              )
+                            : const CircularProgressIndicator(
+                                valueColor: AlwaysStoppedAnimation<Color>(
+                                  ColorConst.primaryColor,
+                                ),
+                              ),
                       );
                     },
                     loading: () {
-                      return Column(
-                        mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          SizedBox(
-                            height: 50.0.h,
-                          ),
-                          SizedBox(
-                            height: 150.h,
-                            child: Center(
-                              child: Platform.isIOS
-                                  ? const CircularProgressIndicator.adaptive(
-                                      backgroundColor: ColorConst.primaryColor,
-                                    )
-                                  : const CircularProgressIndicator(
-                                      valueColor: AlwaysStoppedAnimation<Color>(
-                                        ColorConst.primaryColor,
-                                      ),
-                                    ),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 50.0.h,
-                          ),
-                        ],
+                      return Center(
+                        child: Platform.isIOS
+                            ? const CircularProgressIndicator.adaptive(
+                                backgroundColor: ColorConst.primaryColor,
+                              )
+                            : const CircularProgressIndicator(
+                                valueColor: AlwaysStoppedAnimation<Color>(
+                                  ColorConst.primaryColor,
+                                ),
+                              ),
                       );
                     },
                     error: (string) {

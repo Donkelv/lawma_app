@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:lawma_app/data/constant/string_const.dart';
 import 'package:lawma_app/data/providers/add_user_provider.dart';
 import 'package:lawma_app/data/utils/user_type_model.dart';
 import 'package:lawma_app/domain/repository/auth_repository.dart';
+import 'package:lawma_app/domain/repository/firebase_get_request_repositories.dart';
 import 'package:lawma_app/domain/states/auth_loading_state.dart';
 import 'package:lawma_app/presentation/routes/route_generator.dart';
 
@@ -45,10 +46,14 @@ class SignInLoaderNotifier extends StateNotifier<AuthLoadingState> {
         final data =
             await _signInRepository.signInWithEmailAndPassword(email, password);
         data.fold((l) => state = AuthLoadingState.error(l.toString()), (r) {
-          state = AuthLoadingState.authenticated(r);
-          userType.put(StringConst.userTypeKey, UserType.user);
           userId.put(StringConst.userIdKey, r.uid);
-          Navigator.pushNamed(context, RouteGenerator.bottomAppBarScreen);
+          getUserDocument(r.uid).then((value) {
+            Map<String, dynamic> data = value.data() as Map<String, dynamic>;
+            userType.put(StringConst.userTypeKey, data['userType']);
+          });
+
+          state = AuthLoadingState.authenticated(r);
+          //Navigator.pushNamed(context, RouteGenerator.bottomAppBarScreen);
         });
       } catch (e) {
         state = AuthLoadingState.error(e.toString());
@@ -101,9 +106,10 @@ class SignUpNotifier extends StateNotifier<AuthLoadingState> {
       state = const AuthLoadingState.loading();
       try {
         final data = await _signUpRepository.createUserWithEmailAndPassword(
-            email, password,);
-        data.fold((l) => state = AuthLoadingState.error(l.toString()), 
-        (r) {
+          email,
+          password,
+        );
+        data.fold((l) => state = AuthLoadingState.error(l.toString()), (r) {
           Fluttertoast.showToast(
               msg: "Setting up user data",
               toastLength: Toast.LENGTH_SHORT,
@@ -112,9 +118,8 @@ class SignUpNotifier extends StateNotifier<AuthLoadingState> {
               backgroundColor: Colors.red,
               textColor: Colors.white,
               fontSize: 12.0.sp);
-          ref
-              .watch(addUserProvider.notifier)
-              .addUser(userId: r.uid, fullName: fullName, city: city, context: context);
+          ref.watch(addUserProvider.notifier).addUser(
+              userId: r.uid, fullName: fullName, city: city, context: context);
           state = AuthLoadingState.authenticated(r);
         });
       } catch (e) {
@@ -129,14 +134,7 @@ class SignUpNotifier extends StateNotifier<AuthLoadingState> {
             fontSize: 12.0.sp);
       }
     }
-   
   }
-
-
-
-  
-  
-  
 }
 
 /////GET LOCAL GOVERNMENTS AROUND LAGOS STATE
@@ -148,7 +146,7 @@ class GetLGANotifier extends StateNotifier<StateLgaState> {
         super(const StateLgaState.initial());
 
   final Ref ref;
- final BaseAuthRepository _signUpRepository;
+  final BaseAuthRepository _signUpRepository;
 
   Future<void> getLga() async {
     state = const StateLgaState.loading();

@@ -8,7 +8,7 @@ Future<void> getUserCollection() {
 
 
 //Get user document
-Future<void> getUserDocument(String userId) {
+Future<DocumentSnapshot> getUserDocument(String userId) {
   return FirebaseFirestore.instance.collection('users').doc(userId).get();
 }
 

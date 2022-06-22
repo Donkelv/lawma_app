@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lawma_app/presentation/screens/bottom_app_bar.dart';
 import 'package:lawma_app/presentation/screens/edit_profile_sreen.dart';
+import 'package:lawma_app/presentation/screens/loading_screen.dart';
 import 'package:lawma_app/presentation/screens/login_screen.dart';
 import 'package:lawma_app/presentation/screens/onboarding_screen.dart';
 import 'package:lawma_app/presentation/screens/sign_up_screen.dart';
@@ -11,6 +12,7 @@ class RouteGenerator {
   static const String signUpScreen = '/signUpScreen';
   static const String bottomAppBarScreen = '/bottomAppBarScreen';
   static const String editProfileScreen = "/editProfileScreen";
+  static const String loadingScreen = "/loadingScreen";
 
   static Route<dynamic>? generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -24,9 +26,11 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const BottomAppBarScreeen());
       case editProfileScreen:
         return MaterialPageRoute(builder: (_) => const EditProfileScreen());
+      case loadingScreen:
+        return MaterialPageRoute(builder: (_) => const LoadingScreen());
 
       default:
-        return MaterialPageRoute(builder: (_) => const OnboardingScreen());
+        return MaterialPageRoute(builder: (_) => const LoadingScreen());
     }
   }
 }
