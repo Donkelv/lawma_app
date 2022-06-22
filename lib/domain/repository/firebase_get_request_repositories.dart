@@ -13,8 +13,8 @@ Future<DocumentSnapshot> getUserDocument(String userId) {
 }
 
 //Get Driver collection
-Future<void> getDriverCollection() {
-  return FirebaseFirestore.instance.collection('drivers').get();
+Stream<QuerySnapshot> getDriverCollection() {
+  return FirebaseFirestore.instance.collection('drivers').snapshots();
 }
 
 //Get Driver document

@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:lawma_app/data/constant/image_const.dart';
+import 'package:lawma_app/presentation/screens/driver_list_screen.dart';
 import 'package:lawma_app/presentation/screens/home_screen.dart';
 import 'package:lawma_app/presentation/screens/home_screen_admin.dart';
 import 'package:lawma_app/presentation/screens/home_screen_driver.dart';
@@ -19,7 +20,7 @@ class BottomAppBarModel {
 List<BottomAppBarModel> bottomAppBarList = [
   const BottomAppBarModel(icon: ImageConst.homeIcon, page: HomeScreeenAdmin()),
   const BottomAppBarModel(
-      icon: ImageConst.historyIcon, page: TransactionHistoryScreen()),
+      icon: ImageConst.historyIcon, page: DriverListScreen()),
   const BottomAppBarModel(icon: ImageConst.profileIcon, page: ProfileScreen()),
 ];
 
