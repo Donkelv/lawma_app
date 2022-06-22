@@ -13,6 +13,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  
   Directory directory = await path.getApplicationDocumentsDirectory();
   Hive.init(directory.path);
   SystemChrome.setPreferredOrientations(
