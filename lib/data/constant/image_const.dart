@@ -22,4 +22,6 @@ class ImageConst {
       svgAssetRoute + "card_management_icon.svg";
   static const String logOutIcon = svgAssetRoute + "logout_icon.svg";
   static const String userIcon = svgAssetRoute + "user_icon.svg";
+  static const String location = svgAssetRoute + "location.svg";
+  static const String circlearrow = svgAssetRoute + "circlearrow.svg";
 }

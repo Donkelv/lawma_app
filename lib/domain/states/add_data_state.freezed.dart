@@ -20,7 +20,7 @@ mixin _$AddDataState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(String? user) success,
+    required TResult Function(String? data) success,
     required TResult Function(String? error) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -28,7 +28,7 @@ mixin _$AddDataState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(String? user)? success,
+    TResult Function(String? data)? success,
     TResult Function(String? error)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -36,7 +36,7 @@ mixin _$AddDataState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(String? user)? success,
+    TResult Function(String? data)? success,
     TResult Function(String? error)? error,
     required TResult orElse(),
   }) =>
@@ -127,7 +127,7 @@ class _$_$AddDataStateInitial implements _$AddDataStateInitial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(String? user) success,
+    required TResult Function(String? data) success,
     required TResult Function(String? error) error,
   }) {
     return initial();
@@ -138,7 +138,7 @@ class _$_$AddDataStateInitial implements _$AddDataStateInitial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(String? user)? success,
+    TResult Function(String? data)? success,
     TResult Function(String? error)? error,
   }) {
     return initial?.call();
@@ -149,7 +149,7 @@ class _$_$AddDataStateInitial implements _$AddDataStateInitial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(String? user)? success,
+    TResult Function(String? data)? success,
     TResult Function(String? error)? error,
     required TResult orElse(),
   }) {
@@ -244,7 +244,7 @@ class _$_$AddDataStateLoading implements _$AddDataStateLoading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(String? user) success,
+    required TResult Function(String? data) success,
     required TResult Function(String? error) error,
   }) {
     return loading();
@@ -255,7 +255,7 @@ class _$_$AddDataStateLoading implements _$AddDataStateLoading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(String? user)? success,
+    TResult Function(String? data)? success,
     TResult Function(String? error)? error,
   }) {
     return loading?.call();
@@ -266,7 +266,7 @@ class _$_$AddDataStateLoading implements _$AddDataStateLoading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(String? user)? success,
+    TResult Function(String? data)? success,
     TResult Function(String? error)? error,
     required TResult orElse(),
   }) {
@@ -323,7 +323,7 @@ abstract class _$$_$AddDataStateSuccessCopyWith<$Res> {
   factory _$$_$AddDataStateSuccessCopyWith(_$_$AddDataStateSuccess value,
           $Res Function(_$_$AddDataStateSuccess) then) =
       __$$_$AddDataStateSuccessCopyWithImpl<$Res>;
-  $Res call({String? user});
+  $Res call({String? data});
 }
 
 /// @nodoc
@@ -339,12 +339,12 @@ class __$$_$AddDataStateSuccessCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? user = freezed,
+    Object? data = freezed,
   }) {
     return _then(_$_$AddDataStateSuccess(
-      user == freezed
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
+      data == freezed
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -353,14 +353,14 @@ class __$$_$AddDataStateSuccessCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_$AddDataStateSuccess implements _$AddDataStateSuccess {
-  const _$_$AddDataStateSuccess(this.user);
+  const _$_$AddDataStateSuccess(this.data);
 
   @override
-  final String? user;
+  final String? data;
 
   @override
   String toString() {
-    return 'AddDataState.success(user: $user)';
+    return 'AddDataState.success(data: $data)';
   }
 
   @override
@@ -368,12 +368,12 @@ class _$_$AddDataStateSuccess implements _$AddDataStateSuccess {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_$AddDataStateSuccess &&
-            const DeepCollectionEquality().equals(other.user, user));
+            const DeepCollectionEquality().equals(other.data, data));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(user));
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(data));
 
   @JsonKey(ignore: true)
   @override
@@ -386,10 +386,10 @@ class _$_$AddDataStateSuccess implements _$AddDataStateSuccess {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(String? user) success,
+    required TResult Function(String? data) success,
     required TResult Function(String? error) error,
   }) {
-    return success(user);
+    return success(data);
   }
 
   @override
@@ -397,10 +397,10 @@ class _$_$AddDataStateSuccess implements _$AddDataStateSuccess {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(String? user)? success,
+    TResult Function(String? data)? success,
     TResult Function(String? error)? error,
   }) {
-    return success?.call(user);
+    return success?.call(data);
   }
 
   @override
@@ -408,12 +408,12 @@ class _$_$AddDataStateSuccess implements _$AddDataStateSuccess {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(String? user)? success,
+    TResult Function(String? data)? success,
     TResult Function(String? error)? error,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(user);
+      return success(data);
     }
     return orElse();
   }
@@ -457,10 +457,10 @@ class _$_$AddDataStateSuccess implements _$AddDataStateSuccess {
 }
 
 abstract class _$AddDataStateSuccess implements AddDataState {
-  const factory _$AddDataStateSuccess(final String? user) =
+  const factory _$AddDataStateSuccess(final String? data) =
       _$_$AddDataStateSuccess;
 
-  String? get user => throw _privateConstructorUsedError;
+  String? get data => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   _$$_$AddDataStateSuccessCopyWith<_$_$AddDataStateSuccess> get copyWith =>
       throw _privateConstructorUsedError;
@@ -534,7 +534,7 @@ class _$_$AddDataStateError implements _$AddDataStateError {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(String? user) success,
+    required TResult Function(String? data) success,
     required TResult Function(String? error) error,
   }) {
     return error(this.error);
@@ -545,7 +545,7 @@ class _$_$AddDataStateError implements _$AddDataStateError {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(String? user)? success,
+    TResult Function(String? data)? success,
     TResult Function(String? error)? error,
   }) {
     return error?.call(this.error);
@@ -556,7 +556,7 @@ class _$_$AddDataStateError implements _$AddDataStateError {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(String? user)? success,
+    TResult Function(String? data)? success,
     TResult Function(String? error)? error,
     required TResult orElse(),
   }) {

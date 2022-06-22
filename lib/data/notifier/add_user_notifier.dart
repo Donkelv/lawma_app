@@ -19,7 +19,7 @@ class AddUserNotifier extends StateNotifier<AddDataState> {
   CollectionReference users = FirebaseFirestore.instance.collection('users');
 
   Future<void> addUser(
-      {String? userId, String? fullName, required BuildContext context}) {
+      {String? userId, String? fullName, String? city, required BuildContext context}) {
         final userType = Hive.box<String>(StringConst.userTypeBox);
     final userID = Hive.box<String>(StringConst.userIdBox);
     state = const AddDataState.loading();
@@ -27,6 +27,7 @@ class AddUserNotifier extends StateNotifier<AddDataState> {
       'fullName': fullName,
       'userType': UserType.user,
       'userId': userId,
+      "city": city,
       'cardDetails': {},
       'transHistory': [],
     }).then((value) {

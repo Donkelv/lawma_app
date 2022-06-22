@@ -82,6 +82,7 @@ class SignUpNotifier extends StateNotifier<AuthLoadingState> {
       {String? fullName,
       String? email,
       String? password,
+      String? city,
       required BuildContext context}) async {
     final userType = Hive.box<String>(StringConst.userTypeBox);
     final userId = Hive.box<String>(StringConst.userIdBox);
@@ -100,7 +101,7 @@ class SignUpNotifier extends StateNotifier<AuthLoadingState> {
       state = const AuthLoadingState.loading();
       try {
         final data = await _signUpRepository.createUserWithEmailAndPassword(
-            email, password);
+            email, password,);
         data.fold((l) => state = AuthLoadingState.error(l.toString()), 
         (r) {
           Fluttertoast.showToast(
@@ -113,7 +114,7 @@ class SignUpNotifier extends StateNotifier<AuthLoadingState> {
               fontSize: 12.0.sp);
           ref
               .watch(addUserProvider.notifier)
-              .addUser(userId: r.uid, fullName: fullName, context: context);
+              .addUser(userId: r.uid, fullName: fullName, city: city, context: context);
           state = AuthLoadingState.authenticated(r);
         });
       } catch (e) {

@@ -2,7 +2,7 @@
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'sta_lga_state.freezed.dart';
+part 'state_lga_state.freezed.dart';
 
 @freezed
 abstract class StateLgaState with _$StateLgaState {
