@@ -4,11 +4,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:lawma_app/data/constant/string_const.dart';
+import 'package:lawma_app/data/providers/add_driver_provider.dart';
 import 'package:lawma_app/data/providers/add_user_provider.dart';
 import 'package:lawma_app/data/utils/user_type_model.dart';
 import 'package:lawma_app/domain/repository/auth_repository.dart';
 import 'package:lawma_app/domain/repository/firebase_get_request_repositories.dart';
 import 'package:lawma_app/domain/states/auth_loading_state.dart';
+import 'package:lawma_app/domain/states/create_driver_state.dart';
 import 'package:lawma_app/presentation/routes/route_generator.dart';
 
 import '../../domain/states/state_lga_state.dart';
@@ -152,6 +154,90 @@ class SignUpNotifier extends StateNotifier<AuthLoadingState> {
         state = AuthLoadingState.error(e.toString());
         Fluttertoast.showToast(
             msg: "$e",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.CENTER,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.red,
+            textColor: Colors.white,
+            fontSize: 12.0.sp);
+      }
+    }
+  }
+}
+
+///Create Driver
+///
+class CreateDriverNotifier extends StateNotifier<CreateDriverState> {
+  CreateDriverNotifier(
+    this.ref, {
+    required BaseAuthRepository createDriverRepository,
+  })  : _createDriverRepository = createDriverRepository,
+        super(const CreateDriverState.initial());
+
+  final Ref ref;
+  final BaseAuthRepository _createDriverRepository;
+
+  Future createDriver(
+    String? email,
+    String? fullName,
+    String? password,
+    String? driverImage,
+    String? truckImage,
+    String? city,
+    String? truckNumber,
+  ) async {
+    if (email!.isEmpty ||
+        fullName!.isEmpty ||
+        password!.isEmpty ||
+        driverImage!.isEmpty ||
+        truckImage!.isEmpty ||
+        city!.isEmpty ||
+        truckNumber!.isEmpty) {
+      state = const CreateDriverState.error("Please fill all the fields");
+      Fluttertoast.showToast(
+          msg: "Please fill all the fields",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 12.0.sp);
+      return;
+    } else {
+      debugPrint(truckNumber);
+      debugPrint(truckImage);
+      state = const CreateDriverState.laoding();
+      try {
+        final data =
+            await _createDriverRepository.createDriverWithEmailAndPassword(
+          email,
+          password,
+        );
+        data.fold((l) {
+          state = CreateDriverState.error(l);
+          Fluttertoast.showToast(
+              msg: l,
+              toastLength: Toast.LENGTH_SHORT,
+              gravity: ToastGravity.CENTER,
+              timeInSecForIosWeb: 1,
+              backgroundColor: Colors.red,
+              textColor: Colors.white,
+              fontSize: 12.0.sp);
+        }, (r) {
+          ref.watch(addDriverProvider.notifier).addDriver(
+                userId: r.uid,
+                fullName: fullName,
+                location: city,
+                profilePic: driverImage,
+                truckNumber: truckNumber,
+                truckPic: truckImage,
+              );
+          state = CreateDriverState.data(r);
+        });
+      } catch (e) {
+        state = CreateDriverState.error(e.toString());
+        Fluttertoast.showToast(
+            msg: e.toString(),
             toastLength: Toast.LENGTH_SHORT,
             gravity: ToastGravity.CENTER,
             timeInSecForIosWeb: 1,

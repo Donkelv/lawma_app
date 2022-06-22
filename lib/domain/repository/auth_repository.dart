@@ -17,7 +17,8 @@ abstract class BaseAuthRepository {
   Future<Either<String, User>> createUserWithEmailAndPassword(
       String email, String password);
   Future<Either<String, LgaModel>> getLGA(String state);
-
+  Future<Either<String, User>> createDriverWithEmailAndPassword(
+      String email, String password);
 }
 
 class AuthRepository extends BaseAuthRepository {
@@ -38,7 +39,6 @@ class AuthRepository extends BaseAuthRepository {
       } else {
         return Left(e.message!);
       }
-      
     }
   }
 
@@ -60,6 +60,23 @@ class AuthRepository extends BaseAuthRepository {
     }
   }
 
+  @override
+  Future<Either<String, User>> createDriverWithEmailAndPassword(
+      String email, String password) async {
+    try {
+      final user = await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(email: email, password: password);
+      return Right(user.user!);
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'email-already-in-use') {
+        return const Left('Email already in use.');
+      } else if (e.code == 'weak-password') {
+        return const Left('Password is too weak.');
+      } else {
+        return Left(e.message!);
+      }
+    }
+  }
 
   @override
   Future<Either<String, LgaModel>> getLGA(String state) async {

@@ -141,6 +141,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.6.17"
+  cloudinary_public:
+    dependency: "direct main"
+    description:
+      name: cloudinary_public
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.11.1"
   code_builder:
     dependency: transitive
     description:

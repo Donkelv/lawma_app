@@ -11,10 +11,14 @@ import 'package:image_picker/image_picker.dart';
 
 import 'package:lawma_app/data/constant/color_const.dart';
 import 'package:lawma_app/data/constant/image_const.dart';
+import 'package:lawma_app/data/providers/add_driver_provider.dart';
 import 'package:lawma_app/data/utils/theme_const.dart';
+import 'package:lawma_app/domain/states/add_data_state.dart';
+import 'package:lawma_app/domain/states/create_driver_state.dart';
 import 'package:lawma_app/presentation/widgets/text_field.dart';
 
 import '../../data/providers/auth_loader_provider.dart';
+import '../widgets/custom_button.dart';
 
 class HomeScreeenAdmin extends ConsumerStatefulWidget {
   const HomeScreeenAdmin({Key? key}) : super(key: key);
@@ -357,6 +361,34 @@ class _HomeScreeenAdminState extends ConsumerState<HomeScreeenAdmin> {
                   );
                 },
               );
+            }),
+            SizedBox(
+              height: 25.0.h,
+            ),
+            Consumer(builder: (context, ref, child) {
+              if (ref.watch(createDriverProvider).isLoading || ref.watch(addDriverProvider).isLoading) {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              } else {
+                return Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 27.0.w),
+                  child: CustomButton(
+                    onTap: () {
+                      ref.read(createDriverProvider.notifier).createDriver(
+                          emailController!.text,
+                          fullNameController!.text,
+                          emailController!.text,
+                          driverImage!.path,
+                          truckImage!.path,
+                          selectedCity,
+                          truckPlateNumber!.text
+                        );
+                    },
+                    text: 'Sign up',
+                  ),
+                );
+              }
             }),
           ],
         ),
