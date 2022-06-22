@@ -115,27 +115,27 @@ class _LoginScreenState extends State<LoginScreen> {
                   height: 120.0.h,
                 ),
                 //Spacer(),
-                // Consumer(builder: (context, ref, child) {
-                //   if (ref.watch(signInProvider).isLoading) {
-                //     return const Center(
-                //       child: CircularProgressIndicator(),
-                //     );
-                //   } else {
-                //     return Padding(
-                //       padding:  EdgeInsets.symmetric(horizontal: 27.0.w),
-                //       child: CustomButton(
-                //         onTap: () {
-                //           ref.read(signInProvider.notifier).signIn(
-                //                 email: emailController!.text,
-                //                 password: passwordController!.text,
-                //                 context: context,
-                //               );
-                //         },
-                //         text: "Sign in",
-                //       ),
-                //     );
-                //   }
-                // }),
+                Consumer(builder: (context, ref, child) {
+                  if (ref.watch(signInProvider).isLoading) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else {
+                    return Padding(
+                      padding:  EdgeInsets.symmetric(horizontal: 27.0.w),
+                      child: CustomButton(
+                        onTap: () {
+                          ref.read(signInProvider.notifier).signIn(
+                                email: emailController!.text,
+                                password: passwordController!.text,
+                                context: context,
+                              );
+                        },
+                        text: "Sign in",
+                      ),
+                    );
+                  }
+                }),
                 SizedBox(
                   height: 5.0.h,
                 ),
