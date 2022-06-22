@@ -34,7 +34,7 @@ class RouteSelector extends StatelessWidget {
                 title: StringConst.appName,
                 color: ColorConst.whiteColor,
                 onGenerateRoute: RouteGenerator.generateRoute,
-                initialRoute:  RouteGenerator.bottomAppBarScreen,
+                initialRoute:  RouteGenerator.onBoardingScreen,
               );
             },
           );

@@ -1,12 +1,23 @@
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
+
+import 'package:http/http.dart' as http;
+import 'dart:convert' as convert;
+
+import 'package:lawma_app/data/constant/string_const.dart';
+
+import '../../data/constant/oauth_header.dart';
+import '../../data/models/lga_model.dart';
 
 abstract class BaseAuthRepository {
   Future<Either<String, User>> signInWithEmailAndPassword(
       String email, String password);
   Future<Either<String, User>> createUserWithEmailAndPassword(
       String email, String password);
+  Future<Either<String, LgaModel>> getLGA(String state);
+
 }
 
 class AuthRepository extends BaseAuthRepository {
@@ -46,6 +57,32 @@ class AuthRepository extends BaseAuthRepository {
       } else {
         return Left(e.message!);
       }
+    }
+  }
+
+
+  @override
+  Future<Either<String, LgaModel>> getLGA(String state) async {
+    var url = "${StringConst.baseStageUrl}vendorstatelgas?state=$state";
+    var finalUrl = Uri.parse(url);
+
+    try {
+      http.Response response = await http.get(getOAuthURL("GET", "$finalUrl"));
+      String data = response.body;
+      var content = convert.jsonDecode(data);
+      debugPrint(response.body);
+      debugPrint(response.statusCode.toString());
+      if (response.statusCode == 200) {
+        if (content['code'] == 200) {
+          return Right(LgaModel.fromJson(content));
+        } else {
+          return Left(content['info']);
+        }
+      } else {
+        return Left(content['info']);
+      }
+    } on Exception catch (e) {
+      return const Left('Unable to sign up,  try again later');
     }
   }
 }

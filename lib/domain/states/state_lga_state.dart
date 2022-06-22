@@ -1,0 +1,13 @@
+
+
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'sta_lga_state.freezed.dart';
+
+@freezed
+abstract class StateLgaState with _$StateLgaState {
+  const factory StateLgaState.initial() = _StateLgaStateInitial;
+  const factory StateLgaState.loading() = _StateLgaStateLoading;
+  const factory StateLgaState.error(String string) = _StateLgaStateError;
+  const factory StateLgaState.data(dynamic stateLga) = _StateLgaStateData;
+}

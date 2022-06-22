@@ -3,6 +3,8 @@ import 'package:lawma_app/data/notifier/auth_loader_notifier.dart';
 import 'package:lawma_app/domain/repository/auth_repository.dart';
 import 'package:lawma_app/domain/states/auth_loading_state.dart';
 
+import '../../domain/states/state_lga_state.dart';
+
 final signUpProvider =
     StateNotifierProvider<SignUpNotifier, AuthLoadingState>((ref) {
   return SignUpNotifier(ref, signUpRepository: ref.watch(authLoaderProvider),);
@@ -15,6 +17,14 @@ final signInProvider =
     signInRepository: ref.watch(authLoaderProvider),
   );
 });
+
+final lgaProvider = StateNotifierProvider<GetLGANotifier, StateLgaState>((ref) {
+  return GetLGANotifier(
+    ref,
+    signUpRepository: ref.watch(authLoaderProvider),
+  );
+});
+
 
 final authLoaderProvider = Provider<BaseAuthRepository>((ref) {
   return AuthRepository();

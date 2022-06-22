@@ -10,6 +10,8 @@ import 'package:lawma_app/domain/repository/auth_repository.dart';
 import 'package:lawma_app/domain/states/auth_loading_state.dart';
 import 'package:lawma_app/presentation/routes/route_generator.dart';
 
+import '../../domain/states/state_lga_state.dart';
+
 ////SIGN IN LOADER NOTIFIER
 class SignInLoaderNotifier extends StateNotifier<AuthLoadingState> {
   SignInLoaderNotifier(
@@ -126,15 +128,38 @@ class SignUpNotifier extends StateNotifier<AuthLoadingState> {
             fontSize: 12.0.sp);
       }
     }
-    // state = const AuthLoadingState.loading();
-    // try {
-    //   final data = await _signUpRepository.createUserWithEmailAndPassword(
-    //       email!, password!);
-    //   data.fold((l) => state = AuthLoadingState.error(l.toString()), (r) {
-    //     state = AuthLoadingState.authenticated(r);
-    //   });
-    // } catch (e) {
-    //   state = AuthLoadingState.error(e.toString());
-    // }
+   
+  }
+
+
+
+  
+  
+  
+}
+
+/////GET LOCAL GOVERNMENTS AROUND LAGOS STATE
+class GetLGANotifier extends StateNotifier<StateLgaState> {
+  GetLGANotifier(
+    this.ref, {
+    required BaseAuthRepository signUpRepository,
+  })  : _signUpRepository = signUpRepository,
+        super(const StateLgaState.initial());
+
+  final Ref ref;
+ final BaseAuthRepository _signUpRepository;
+
+  Future<void> getLga() async {
+    state = const StateLgaState.loading();
+    try {
+      final data = await _signUpRepository.getLGA("LA");
+      data.fold((l) {
+        state = StateLgaState.error(l.toString());
+      }, (data) {
+        state = StateLgaState.data(data);
+      });
+    } catch (e) {
+      state = StateLgaState.error(e.toString());
+    }
   }
 }
