@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 import '../../data/constant/string_const.dart';
@@ -52,6 +53,7 @@ class PaystackRepository implements IPaystackRepository {
       "Authorization": "Bearer $paystackSecretkey",
     };
     print(amount + "00");
+    debugPrint(_auth.currentUser!.email);
 
     Map<String, dynamic> body = {
       "email": _auth.currentUser!.email,
@@ -118,14 +120,19 @@ class PaystackRepository implements IPaystackRepository {
 
     if (response.statusCode == 200) {
       if (successfulResult.status == true) {
+        print("otp successfull");
+        print(successfulResult);
         //Navigator.pushNamed(context, '/payment-success');
         return Right(successfulResult);
       } else {
+        print(errorResult);
+        print("error");
         return Left(errorResult.data!.message.toString());
       }
     } else {
       print(response.statusCode);
       print(response.body);
+      print("not 200");
       return Left(errorResult.data!.message.toString());
     }
   }

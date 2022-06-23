@@ -54,14 +54,14 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                       .map(
                         (e) => TransHistoryDriverModel(
                           date: e['date'],
-                          location: e['location'],
+                          //location: e['location'],
                           address: e['address'],
                           transId: e['transId'],
                           userInfo: (e['userInfo']).map(
                             (value) => UserInfoModel(
                               userId: value['userId'],
                               userName: value['userName'],
-                              userImage: value['userImage'],
+                              //userImage: value['userImage'],
                             ),
                           ),
                         ),

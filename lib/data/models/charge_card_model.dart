@@ -34,7 +34,7 @@ class SuccessfulChargeCardData {
       SuccessfulChargeCardData(
         reference: json["reference"] == null ? null : json["reference"],
         status: json["status"] == null ? null : json["status"],
-        displayText: json["displayText"] == null ? null : json["display_text"],
+        displayText: json["display_text"] == null ? null : json["display_text"],
       );
 }
 

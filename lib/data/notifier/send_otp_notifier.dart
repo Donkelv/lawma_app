@@ -1,38 +1,76 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:lawma_app/data/models/driver_list_model.dart';
+import 'package:lawma_app/data/models/trans_history_driver.dart';
 import 'package:lawma_app/domain/states/charge_card_state.dart';
 
 import '../../domain/repository/paystack_repository.dart';
+import '../providers/add_driver_provider.dart';
 
 final sendOtpProvider =
     StateNotifierProvider.autoDispose<SendOtpNotifier, ChargeCardState>((ref) =>
-        SendOtpNotifier(
-            iPaystackRepository: ref.watch(_iSendOtpProvider), ref: ref));
+        SendOtpNotifier(ref,
+            iPaystackRepository: ref.watch(_iSendOtpProvider)));
 
 final _iSendOtpProvider =
     Provider<IPaystackRepository>((ref) => PaystackRepository());
 
 class SendOtpNotifier extends StateNotifier<ChargeCardState> {
-  SendOtpNotifier(
-      {required IPaystackRepository iPaystackRepository, required Ref ref})
+  SendOtpNotifier(this.ref, {required IPaystackRepository iPaystackRepository})
       : _iSendOtpProvider = iPaystackRepository,
-        super(ChargeCardState.initial());
+        super(const ChargeCardState.initial());
 
   final IPaystackRepository _iSendOtpProvider;
-  Ref? ref;
+  Ref ref;
+  final _auth = FirebaseAuth.instance;
 
-  Future<void> submitOtp(
-      {String? reference,
-      String? otp,
-      required BuildContext context,
-      }) async {
-    state = ChargeCardState.loading();
+  Future<void> submitOtp({
+    String? reference,
+    String? otp,
+    DriverListModel? driverListModel,
+    String? weight,
+    String? address,
+    String? description,
+    required BuildContext context,
+  }) async {
+    state = const ChargeCardState.loading();
     try {
       final result = await _iSendOtpProvider.submitOtp(reference!, otp!);
       result.fold((l) {
+        Fluttertoast.showToast(
+            msg: l.toString(),
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.CENTER,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.red,
+            textColor: Colors.white,
+            fontSize: 12.0.sp);
         print(l.toString());
         state = ChargeCardState.error(l);
       }, (r) {
+        print("Charge card successfull");
+        print(r);
+        print("success");
+        print(
+          driverListModel!.userId
+        );
+        ref.watch(updateDriverProider.notifier).updateDriver(
+              context: context,
+              userId: driverListModel.userId,
+              transHistory: TransHistoryDriverModel(
+                date: DateTime.now(),
+                //location: location,
+                address: address!,
+                transId: reference,
+                userInfo: UserInfoModel(
+                  userId: _auth.currentUser!.uid,
+                  userName: "",
+                ),
+              ),
+            );
         // print(address!.address);
         // notifyWoocomerce(
         //   status: r.data!.status.toString(),
@@ -43,9 +81,17 @@ class SendOtpNotifier extends StateNotifier<ChargeCardState> {
         //   context: context,
         // );
 
-        state = ChargeCardState.loading();
+        state = ChargeCardState.loaded(r);
       });
     } catch (e) {
+      Fluttertoast.showToast(
+          msg: e.toString(),
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 12.0.sp);
       print(e);
       state = ChargeCardState.error(e.toString());
     }

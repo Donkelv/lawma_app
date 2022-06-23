@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:lawma_app/data/constant/image_const.dart';
 import 'package:lawma_app/data/utils/theme_const.dart';
 import 'package:lawma_app/presentation/widgets/card_management_widget.dart';
@@ -84,7 +85,7 @@ class _BookingWidgetState extends State<BookingWidget> {
             SizedBox(
               height: 5.0.h,
             ),
-             CustomTextField(
+            CustomTextField(
               controller: addressController,
               hintText: "Enter your address",
               keyboardType: TextInputType.emailAddress,
@@ -103,7 +104,7 @@ class _BookingWidgetState extends State<BookingWidget> {
             SizedBox(
               height: 5.0.h,
             ),
-             CustomTextField(
+            CustomTextField(
               controller: descriptionController,
               hintText: "Brief description of building(optional)",
               keyboardType: TextInputType.emailAddress,
@@ -122,10 +123,10 @@ class _BookingWidgetState extends State<BookingWidget> {
             SizedBox(
               height: 5.0.h,
             ),
-             CustomTextField(
+            CustomTextField(
               controller: weightController,
-              hintText: "50kg",
-              keyboardType: TextInputType.emailAddress,
+              hintText: "kg",
+              keyboardType: TextInputType.number,
               prefixIcon: ImageConst.emailIcon,
             ),
             SizedBox(
@@ -134,16 +135,29 @@ class _BookingWidgetState extends State<BookingWidget> {
             CustomButton(
               text: "Continue",
               onTap: () {
-                Navigator.pop(context);
-                customBottomSheet(
-                  context: context,
-                  widget:  ConfirmPaymentSheet(
-                    driverList: widget.driverList,
-                    address: addressController!.text,
-                    description: descriptionController!.text,
-                    weight: weightController!.text,
-                  ),
-                );
+                if (addressController!.text.isEmpty ||
+                    descriptionController!.text.isEmpty ||
+                    weightController!.text.isEmpty) {
+                      Fluttertoast.showToast(
+                      msg: "Please fill in all fields to book a driver",
+                      toastLength: Toast.LENGTH_SHORT,
+                      gravity: ToastGravity.CENTER,
+                      timeInSecForIosWeb: 1,
+                      backgroundColor: Colors.red,
+                      textColor: Colors.white,
+                      fontSize: 12.0.sp);
+                } else {
+                  Navigator.pop(context);
+                  customBottomSheet(
+                    context: context,
+                    widget: ConfirmPaymentSheet(
+                      driverList: widget.driverList,
+                      address: addressController!.text,
+                      description: descriptionController!.text,
+                      weight: weightController!.text,
+                    ),
+                  );
+                }
                 //Navigator.pushNamed(context, RouteGenerator.bottomAppBarScreen);
               },
             ),

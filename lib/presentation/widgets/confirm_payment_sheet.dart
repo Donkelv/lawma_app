@@ -9,6 +9,8 @@ import 'package:lawma_app/data/utils/theme_const.dart';
 import 'package:lawma_app/presentation/widgets/custom_button.dart';
 
 import '../../data/models/driver_list_model.dart';
+import 'add_card_sheet.dart';
+import 'custom_bottom_sheet.dart';
 
 class ConfirmPaymentSheet extends StatefulWidget {
   final DriverListModel? driverList;
@@ -28,8 +30,8 @@ class ConfirmPaymentSheet extends StatefulWidget {
 }
 
 class _ConfirmPaymentSheetState extends State<ConfirmPaymentSheet> {
-  String? getCharge(String weight) {
-    int charge = int.tryParse(weight)! * 1000;
+  String? getCharge(String? weight) {
+    int charge = int.tryParse(weight!)! * 1000;
     return charge.toString();
   }
 
@@ -191,6 +193,16 @@ class _ConfirmPaymentSheetState extends State<ConfirmPaymentSheet> {
             text: "Confirm",
             onTap: () async {
               Navigator.pop(context);
+              customBottomSheet(
+                context: context,
+                widget:  AddCardSheet(
+                  driverList: widget.driverList,
+                  address: widget.address,
+                  description: widget.description,
+                  weight: widget.weight,
+                  amount: getCharge(widget.weight!),
+                ),
+              );
               // chargeCard(
               //   amount: getCharge(widget.weight!),
               //   email: _auth.currentUser!.email,

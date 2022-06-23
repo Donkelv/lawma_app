@@ -1,6 +1,6 @@
 class TransHistoryDriverModel {
   final DateTime date;
-  final String location;
+  //final String location;
   //final num rating;
   final String transId;
   final String address;
@@ -8,7 +8,7 @@ class TransHistoryDriverModel {
 
   TransHistoryDriverModel({
     required this.date,
-    required this.location,
+    //required this.location,
     //required this.rating,
     required this.address,
     required this.transId,
@@ -18,7 +18,7 @@ class TransHistoryDriverModel {
   factory TransHistoryDriverModel.fromJson(Map<String, dynamic> json) =>
       TransHistoryDriverModel(
         date: json['date'],
-        location: json['location'] as String,
+        //location: json['location'] as String,
         address: json['address'] as String,
         //rating: json['rating'],
         transId: json['transId'],
@@ -30,17 +30,17 @@ class TransHistoryDriverModel {
 class UserInfoModel {
   final String userId;
   final String userName;
-  final String userImage;
+  //final String userImage;
 
   UserInfoModel({
     required this.userId,
     required this.userName,
-    required this.userImage,
+    //required this.userImage,
   });
 
   factory UserInfoModel.fromJson(Map<String, dynamic> json) => UserInfoModel(
         userId: json['userId'],
-        userImage: json['userImage'],
+        //userImage: json['userImage'],
         userName: json['userName'],
       );
 }

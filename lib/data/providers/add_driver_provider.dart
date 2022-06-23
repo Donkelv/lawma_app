@@ -10,3 +10,11 @@ final addDriverProvider =
     StateNotifierProvider<AddDriverNotifier, AddDataState>((ref) {
   return AddDriverNotifier(ref);
 });
+
+
+
+
+final updateDriverProider =
+    StateNotifierProvider<UpdateDriverNotifier, AddDataState>((ref) {
+  return UpdateDriverNotifier(ref);
+});
