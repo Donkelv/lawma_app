@@ -13,3 +13,8 @@ class StringConst {
 }
 
 
+
+const String paystackSecretkey =
+    "sk_test_ac8971390ed43c9b29074c23f4bdaddccc24b865";
+
+

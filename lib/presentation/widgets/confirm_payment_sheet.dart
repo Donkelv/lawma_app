@@ -33,7 +33,7 @@ class _ConfirmPaymentSheetState extends State<ConfirmPaymentSheet> {
     return charge.toString();
   }
 
-  final _auth = FirebaseAuth.instance;
+  //final _auth = FirebaseAuth.instance;
 
   // var publicKey = 'sk_test_ac8971390ed43c9b29074c23f4bdaddccc24b865';
 
